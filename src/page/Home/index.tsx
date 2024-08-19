@@ -1,4 +1,3 @@
-import React from "react";
 import { Button, Input, Typography } from "antd";
 import styles from "./Home.module.scss";
 import { Search } from "lucide-react";
