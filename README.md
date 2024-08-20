@@ -1,4 +1,4 @@
-Деплой стенд: https://hr-automation-9142.onrender.com/api
+Деплой стенд: https://hr-automation-9142.onrender.com/api/
 
 <h3>Запуск проекта</h3>
 <p>Сначало установить все зависимости<p>
