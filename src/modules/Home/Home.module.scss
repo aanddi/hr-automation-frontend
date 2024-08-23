@@ -2,18 +2,30 @@
 
 .home {
    .search {
-      display: flex;
-      gap: 16px;
       margin-top: 100px;
 
-      .button {
-         width: 180px;
-         height: 41px;
-         align-self: flex-end;
+      .header {
+         margin-bottom: 34px;
+
+         .title {
+            text-align: center;
+            font-weight: 700 !important;
+         }
       }
 
-      .textarea {
-         background-color: $inputColor;
+      .content {
+         display: flex;
+         gap: 16px;
+
+         .button {
+            width: 180px;
+            height: 41px;
+            align-self: flex-end;
+         }
+
+         .textarea {
+            background-color: $inputColor;
+         }
       }
    }
 }

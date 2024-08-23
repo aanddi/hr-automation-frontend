@@ -1,72 +1,42 @@
-import { Table } from "antd";
+import { Breadcrumb, Button, Typography } from "antd";
 import styles from "./Сandidates.module.scss";
+import mockData from "./mock";
+import IСandidates from "@api/candidates/type";
+import CandidatesTable from "./components/CandidatesTable";
+import { itemsBreadcrumb } from "./constans";
+import { utils as XlsxUtils, writeFile as XlsxWriteFile } from "xlsx";
 
 const Сandidates = () => {
-   const dataSource = [
-      {
-         key: "1",
-         column1: "Row",
-         column2: "Row",
-         column3: "Row",
-         column4: "Row",
-      },
-      {
-         key: "2",
-         column1: "Row",
-         column2: "Row",
-         column3: "Row",
-         column4: "Row",
-      },
-      {
-         key: "3",
-         column1: "Row",
-         column2: "Row",
-         column3: "Row",
-         column4: "Row",
-      },
-   ];
+   const candidates: IСandidates[] = mockData?.map((candidate, index) => ({
+      id: index + 1,
+      fullname: candidate.fullname,
+      age: candidate.age,
+      profession: candidate.profession,
+      linkResume: candidate.linkResume,
+      scorball: candidate.scorball,
+   }));
 
-   const columns = [
-      {
-         title: "Column",
-         dataIndex: "column1",
-         key: "column1",
-      },
-      {
-         title: "Column",
-         dataIndex: "column2",
-         key: "column2",
-      },
-      {
-         title: "Column",
-         dataIndex: "column3",
-         key: "column3",
-      },
-      {
-         title: "Column",
-         dataIndex: "column4",
-         key: "column4",
-      },
-   ];
-
-   // const rowSelection = {
-   //    onChange: (selectedRowKeys: , selectedRows: ) => {
-   //       console.log("selectedRowKeys:", selectedRowKeys);
-   //       console.log("selectedRows:", selectedRows);
-   //    },
-   // };
+   const handleDownloadExcel = () => {
+      const data = XlsxUtils.json_to_sheet(candidates);
+      const bookExcel = XlsxUtils.book_new();
+      XlsxUtils.book_append_sheet(bookExcel, data, "Кандидаты");
+      XlsxWriteFile(bookExcel, "candidates.xlsx");
+   };
 
    return (
-      <div className={styles.table}>
-         <Table
-            dataSource={dataSource}
-            columns={columns}
-            pagination={false}
-            // rowSelection={{
-            //    type: "checkbox",
-            //    ...rowSelection,
-            // }}
-         />
+      <div className={styles.candidates}>
+         <div className={styles.header}>
+            <Breadcrumb items={itemsBreadcrumb} />
+            <Typography.Title level={2} className={styles.title}>
+               Результат поиска
+            </Typography.Title>
+         </div>
+         <div className={styles.actions}>
+            <Button type="primary" onClick={handleDownloadExcel}>
+               Скачать Excel
+            </Button>
+         </div>
+         <CandidatesTable data={candidates} />
       </div>
    );
 };
