@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
-import { SearchService } from "../../../api/search";
-import ISearchGpt from "../../../api/search/types";
+import { SearchService } from "@api/search";
+import ISearchGpt from "@api/search/types";
 
 const useCreateSearch = (
    setState: React.Dispatch<React.SetStateAction<ISearchGpt | null>>
