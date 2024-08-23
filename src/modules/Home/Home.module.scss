@@ -1,0 +1,19 @@
+@import "/src/styles/variables.scss";
+
+.home {
+   .search {
+      display: flex;
+      gap: 16px;
+      margin-top: 100px;
+
+      .button {
+         width: 180px;
+         height: 41px;
+         align-self: flex-end;
+      }
+
+      .textarea {
+         background-color: $inputColor;
+      }
+   }
+}
