@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { Button, Input, Typography } from "antd";
+import { Button, Input, Spin, Typography } from "antd";
 import { Controller, useForm } from "react-hook-form";
 import useCreateSearch from "./model";
-import ISearchGpt from "@api/search/types";
+import { ISearchGpt } from "@api/search/types";
 import styles from "./Home.module.scss";
 
 const Home = () => {
    const { control, handleSubmit } = useForm<ISearchGpt>();
 
-   const [state, setState] = useState<ISearchGpt | null>(null);
+   const [state, setState] = useState<string>("");
 
    const { mutate: createRequestGpt, isPending } = useCreateSearch(setState);
 
@@ -50,6 +50,16 @@ const Home = () => {
                </Button>
             </div>
          </form>
+         <Typography.Paragraph className={styles.resultTets}>
+            {isPending ? (
+               <Spin />
+            ) : (
+               <>
+                  <b>Ответ:</b> <br />
+                  {state}
+               </>
+            )}
+         </Typography.Paragraph>
       </div>
    );
 };
