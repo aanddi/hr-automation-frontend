@@ -1,5 +1,5 @@
 interface ISearchGpt {
-   prompt: string;
+   description: string;
 }
 
 export default ISearchGpt;
