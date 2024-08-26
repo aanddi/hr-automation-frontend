@@ -1,10 +1,1 @@
-Generated Query: Для формирования GET-запроса к API hh.ru для получения вакансий, подходящих под описание, необходимо указать соответствующие параметры. В вашем случае ключевые навыки включают Java, bash, cron, а также работа с ETL и базами данных HBase/PostgreSQL.
-
-Вот пример GET-запроса с использованием языка Java и навыков ETL, HBase и PostgreSQL в текстовом поиске:
-
-```http
-GET https://api.hh.ru/vacancies?text=ETL%20Java%20bash%20cron%20HBase%20PostgreSQL
-```
-
-Если вам нужно извлекать вакансии через API с определенными параметрами, JSON-структура запроса может выглядеть
-Generated Query: [object Object]
+Generated Query: https://api.hh.ru/resumes?text=java,bash,cron,HBase,PostgreSQL,ClickHouse,Airflow,YTsaurus,Kubernetes,Confluence,ETL,SQL&text.logic=all&text.field=experience,skills&order_by=relevance&per_page=20
