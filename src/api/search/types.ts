@@ -2,4 +2,8 @@ interface ISearchGpt {
    description: string;
 }
 
-export default ISearchGpt;
+interface IResponseSearchGpt {
+   generatedQuery: string;
+}
+
+export type { ISearchGpt, IResponseSearchGpt };
