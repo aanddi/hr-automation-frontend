@@ -8,3 +8,21 @@ GET https://api.hh.ru/vacancies?text=ETL%20Java%20bash%20cron%20HBase%20PostgreS
 
 Если вам нужно извлекать вакансии через API с определенными параметрами, JSON-структура запроса может выглядеть
 Generated Query: [object Object]
+Generated Query: Для создания GET-запроса к API hh.ru, который будет соответствовать описанию вакансии, можно использовать следующий JSON-формат. Запрос будет на поиск вакансий, соответствующих таким критериям, как "разработчик ETL", технологии и задачи:
+
+```http
+GET https://api.hh.ru/vacancies?text=разработчик%20ETL&area=1&salary=100000&per_page=50&only_with_salary=true&skills=Java,Bash,Kubernetes,HBase,PostgreSQL,ClickHouse,YQL,YTsaurus
+```
+
+Объяснение параметров в запросе:
+- `text=разработчик ETL` — поиск вакансий с ключевыми словами
+Generated Query: Для формирования GET-запроса к API hh.ru для поиска резюме, необходимо указать интересующие ключевые слова и параметры, соответствующие требованиям вакансии. Вот пример, как может выглядеть такой запрос:
+
+```http
+GET https://api.hh.ru/resumes?text=ETL+разработчик+Java+Bash+PostgreSQL+ClickHouse+HBase+Kubernetes+YTsaurus
+```
+
+В теле запроса можно добавить дополнительные параметры, если это необходимо. Например, вы можете уточнить регион, опыт работы и другие фильтры. Пример расширенного запроса может выглядеть так:
+
+```http
+GET https://api.hh.ru/resumes?text=ETL+разработчик+Java

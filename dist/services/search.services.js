@@ -1,13 +1,15 @@
 import OpenAI from 'openai';
 import fs from 'fs';
+import dotenv from 'dotenv';
+dotenv.config();
 const client = new OpenAI({
-    apiKey: process.env.VITE_SERVER_API_TOKEN
+    apiKey: process.env.OPENAI_API_TOKEN
 });
 export const SearchService = {
     async getSearch(req, res) {
         const description = req.body.description;
         const assistantId = 'asst_peoQpVmt93Hn6nn7CaCUeXEN';
-        const prompt = `На основе следующего описания вакансии: "${description}", сформируй GET-запрос в формате JSON для API hh.ru.`;
+        const prompt = `На основе следующего описания вакансии: "${description}", сформируй GET-запрос в формате JSON для API hh.ru для поиска резюме кандидатов.`;
         try {
             const params = {
                 model: 'gpt-4o-mini',
