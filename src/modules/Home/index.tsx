@@ -27,7 +27,7 @@ const Home = () => {
             </div>
             <div className={styles.content}>
                <Controller
-                  name="prompt"
+                  name="description"
                   control={control}
                   render={({ field }) => (
                      <Input.TextArea
