@@ -1,1 +1,9 @@
 Generated Query: https://api.hh.ru/resumes?text=java,bash,cron,HBase,PostgreSQL,ClickHouse,Airflow,YTsaurus,Kubernetes,Confluence,ETL,SQL&text.logic=all&text.field=experience,skills&order_by=relevance&per_page=20
+Generated Query: https://api.hh.ru/resumes?text=разработчик%20ETL&text=Java&text=bash&text=cron&text=HBase&text=PostgreSQL&text=ClickHouse&text=Airflow&text=YTsaurus&text=YQL&specialization=1.221&area=1
+Generated Query: ```plaintext
+https://api.hh.ru/resumes?text= Разработчик ETL&experience=doesNotMatter&employment=full&schedule=fullDay&industry=Разработка ETL, исправление багов, HBase, PostgreSQL, ClickHouse, Java, bash, cron, SQL, CR, Airflow, YTsaurus&fields=skills,area,age,salary,employment,schedule
+```
+Generated Query: ```plaintext
+https://api.hh.ru/resumes?area=113&text=Разработчик+ETL+(Java+bash+cron HBase+PostgreSQL+SQL+ClickHouse)&experience=between3And6&skill=java,bash,cron,airflow,ysql,ytsaurus,confluence&search_field=name&search_field=specialization
+```
+Generated Query: https://api.hh.ru/resumes?text=ETL%20Java%20bash%20cron%20HBase%20PostgreSQL%20ClickHouse&experience=between3And6&area=1&specialization=1.221&fields=id,first_name,last_name,experience,education,skills,area
