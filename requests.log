@@ -7,3 +7,13 @@ Generated Query: ```plaintext
 https://api.hh.ru/resumes?area=113&text=Разработчик+ETL+(Java+bash+cron HBase+PostgreSQL+SQL+ClickHouse)&experience=between3And6&skill=java,bash,cron,airflow,ysql,ytsaurus,confluence&search_field=name&search_field=specialization
 ```
 Generated Query: https://api.hh.ru/resumes?text=ETL%20Java%20bash%20cron%20HBase%20PostgreSQL%20ClickHouse&experience=between3And6&area=1&specialization=1.221&fields=id,first_name,last_name,experience,education,skills,area
+Generated Query: https://api.hh.ru/resumes?text=Java&text=Bash&text=Cron&text=HBase&text=PostgreSQL&text=ClickHouse&text=ETL&text=bug%20fixing&text=refactoring&text.logic=all&experience=moreThan6&area=1&skill=Java&skill=Bash&skill=PostgreSQL&skill=HBase&skill=ClickHouse&employer_name=Kubernetes&skill=SQL&skill=Airflow&skill=YQL&skill=YTsaurus
+Generated Query: https://api.hh.ru/resumes?text=ETL&text=Java&text=bash&text=cron&text=HBase&text=PostgreSQL&text=ClickHouse&text=Airflow&text=YTsaurus&text.logic=all&text.field=experience,skills&experience=between1And3,between3And6,mobile&skills=Java,Bash,Cron,HBase,PostgreSQL,ClickHouse,Airflow,YTsaurus&area=113&order_by=relevance
+Generated Query: https://api.hh.ru/resumes?text=Java&text=bash&text=cron&text=HBase&text=PostgreSQL&text=ClickHouse&text=производительность&text=SQL&text=Airflow&text=YTsaurus&specialization=1.221&experience=between3And6&area=1&per_page=50
+Generated Query: https://api.hh.ru/resumes?text=Java&text=bash&text=ETL&text=cron&text=Airflow&text=YTsaurus&text=SQL&text=PostgreSQL&text=ClickHouse&areas=1&experience=between3And6&experience=moreThan6&skill=225&skill=124&skill=422&order_by=relevance
+Generated Query: https://api.hh.ru/resumes?text=ETL+разработчик&search_field=name&skills=Java,Bash,Cron,HBase,PostgreSQL,ClickHouse,Airflow,YTsaurus,Kubernetes,SQL&experience=between1And3&employment=full&area=1&per_page=20
+Generated Query: https://api.hh.ru/resumes?text=JAVA%20ETL%20developer&skill=Java&skill=Bash&skill=SQL&skill=Cron&skill=Kubernetes&skill=HBase&skill=PostgreSQL&skill=ClickHouse&skill=Airflow&skill=YQL&skill=YTsaurus&experience=moreThanSix&area=1
+Generated Query: ```plaintext
+https://api.hh.ru/resumes?text=ETL&search_field=name,skills,experience&experience=moreThan6&employment=full&skill=123&skill=124&skill=125&area=1&industry=7&specialization=1.395&specialization=1.221&education_level=high&order_by=relevance&period=30
+```
+Generated Query: https://api.hh.ru/resumes?text=ETL+Java+Bash+HBase+PostgreSQL+ClickHouse+YQL+YTsaurus&skill=Java&skill=Bash&skill=SQL&skill=Kubernetes&experience=between3And6&experience=between6AndMore&area=113&employment=full&schedule=fullDay
