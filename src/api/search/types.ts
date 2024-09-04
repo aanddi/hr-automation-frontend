@@ -3,7 +3,14 @@ interface ISearchGpt {
 }
 
 interface IResponseSearchGpt {
-   generatedQuery: string;
+   urlHHruApi: string;
+   listCandidates: {
+      items: [];
+      found: number;
+      pages: number;
+      page: number;
+      per_page: number;
+   };
 }
 
 export type { ISearchGpt, IResponseSearchGpt };

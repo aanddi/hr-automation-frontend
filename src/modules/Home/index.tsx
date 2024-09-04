@@ -2,19 +2,18 @@ import { useState } from "react";
 import { Button, Input, Spin, Typography } from "antd";
 import { Controller, useForm } from "react-hook-form";
 import useCreateSearch from "./model";
-import { ISearchGpt } from "@api/search/types";
+import { IResponseSearchGpt, ISearchGpt } from "@api/search/types";
 import styles from "./Home.module.scss";
 
 const Home = () => {
    const { control, handleSubmit } = useForm<ISearchGpt>();
 
-   const [state, setState] = useState<string>("");
+   const [state, setState] = useState<IResponseSearchGpt | null>(null);
 
    const { mutate: createRequestGpt, isPending } = useCreateSearch(setState);
 
-   const handleSearch = (data: ISearchGpt) => {
+   const handleSearch = async (data: ISearchGpt) => {
       createRequestGpt(data);
-      console.log(state);
    };
 
    return (
@@ -56,7 +55,10 @@ const Home = () => {
             ) : (
                <>
                   <b>Ответ:</b> <br />
-                  {state}
+                  {state?.urlHHruApi}
+                  <br />
+                  <br />
+                  {JSON.stringify(state?.listCandidates)}
                </>
             )}
          </Typography.Paragraph>
