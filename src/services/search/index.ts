@@ -82,7 +82,7 @@ const getListСandidates = async (url: string, res: Response) => {
       const listCandidates = await axios.get(url, {
          params: {
             page: 1,
-            per_page: 1
+            per_page: 6
          },
          headers: {
             Authorization: `Bearer ${accessToken}`
