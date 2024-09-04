@@ -91,8 +91,9 @@ const getListСandidates = async (url: string, res: Response) => {
 
       return listCandidates.data;
    } catch (error) {
-      console.error('Ошибка при получении списка:', error);
-      res.status(500).send('Ошибка при получении списка');
+      // console.error('Ошибка при получении списка:', error);
+      // res.status(500).send('Ошибка при получении списка');
+      return [];
    }
 };
 
