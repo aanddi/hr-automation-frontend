@@ -47,12 +47,12 @@ const getUrlHHru = async (desc, res) => {
         }
         else {
             console.log('Run status:', run.status);
-            res.status(500).json({ message: 'Ошибка при создании запроса' });
+            return res.status(500).json({ message: 'Ошибка при создании запроса' });
         }
     }
     catch (error) {
         console.error('Ошибка при взаимодействии с OpenAI API:', error);
-        res.status(500).json({ message: 'Ошибка при создании запроса' });
+        return res.status(500).json({ message: 'Ошибка при создании запроса' });
     }
 };
 const getListСandidates = async (url, res) => {
@@ -61,7 +61,7 @@ const getListСandidates = async (url, res) => {
         const listCandidates = await axios.get(url, {
             params: {
                 page: 1,
-                per_page: 1
+                per_page: 6
             },
             headers: {
                 Authorization: `Bearer ${accessToken}`
@@ -70,8 +70,9 @@ const getListСandidates = async (url, res) => {
         return listCandidates.data;
     }
     catch (error) {
-        console.error('Ошибка при получении списка:', error);
-        res.status(500).send('Ошибка при получении списка');
+        // console.error('Ошибка при получении списка:', error);
+        // res.status(500).send('Ошибка при получении списка');
+        return [];
     }
 };
 // const getScorball = async () => {};

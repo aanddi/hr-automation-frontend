@@ -67,11 +67,11 @@ const getUrlHHru = async (desc: string, res: Response) => {
          return generatedQuery;
       } else {
          console.log('Run status:', run.status);
-         res.status(500).json({ message: 'Ошибка при создании запроса' });
+         return res.status(500).json({ message: 'Ошибка при создании запроса' });
       }
    } catch (error) {
       console.error('Ошибка при взаимодействии с OpenAI API:', error);
-      res.status(500).json({ message: 'Ошибка при создании запроса' });
+      return res.status(500).json({ message: 'Ошибка при создании запроса' });
    }
 };
 
