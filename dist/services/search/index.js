@@ -10,9 +10,9 @@ export const SearchService = {
     async getSearch(req, res) {
         const { description } = req.body;
         const urlHHruApi = await getUrlHHru(description, res);
-        // const listCandidates = await getListСandidates(urlHHruApi as string, res);
-        const getScorballResult = await getScorball();
-        return res.json({ urlHHruApi });
+        const listCandidates = await getListСandidates(urlHHruApi, res);
+        // const getScorballResult = await getScorball();
+        return res.json({ urlHHruApi, listCandidates });
     }
 };
 const getUrlHHru = async (desc, res) => {
@@ -56,11 +56,15 @@ const getUrlHHru = async (desc, res) => {
     }
 };
 const getListСandidates = async (url, res) => {
-    const apiToken = process.env.HHRU_API_TOKEN;
+    const accessToken = process.env.HHRU_API_ACCESS_TOKEN;
     try {
         const listCandidates = await axios.get(url, {
+            params: {
+                page: 1,
+                per_page: 1
+            },
             headers: {
-                Authorization: `Bearer ${apiToken}`
+                Authorization: `Bearer ${accessToken}`
             }
         });
         return listCandidates.data;
@@ -70,4 +74,4 @@ const getListСandidates = async (url, res) => {
         res.status(500).send('Ошибка при получении списка');
     }
 };
-const getScorball = async () => { };
+// const getScorball = async () => {};

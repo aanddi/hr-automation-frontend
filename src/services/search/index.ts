@@ -19,11 +19,11 @@ export const SearchService = {
 
       const urlHHruApi = await getUrlHHru(description, res);
 
-      // const listCandidates = await getListСandidates(urlHHruApi as string, res);
+      const listCandidates = await getListСandidates(urlHHruApi as string, res);
 
-      const getScorballResult = await getScorball();
+      // const getScorballResult = await getScorball();
 
-      return res.json({ urlHHruApi });
+      return res.json({ urlHHruApi, listCandidates });
    }
 };
 
@@ -76,12 +76,16 @@ const getUrlHHru = async (desc: string, res: Response) => {
 };
 
 const getListСandidates = async (url: string, res: Response) => {
-   const apiToken = process.env.HHRU_API_TOKEN;
+   const accessToken = process.env.HHRU_API_ACCESS_TOKEN;
 
    try {
       const listCandidates = await axios.get(url, {
+         params: {
+            page: 1,
+            per_page: 1
+         },
          headers: {
-            Authorization: `Bearer ${apiToken}`
+            Authorization: `Bearer ${accessToken}`
          }
       });
 
@@ -92,4 +96,4 @@ const getListСandidates = async (url: string, res: Response) => {
    }
 };
 
-const getScorball = async () => {};
+// const getScorball = async () => {};

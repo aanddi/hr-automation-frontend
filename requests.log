@@ -17,3 +17,5 @@ Generated Query: ```plaintext
 https://api.hh.ru/resumes?text=ETL&search_field=name,skills,experience&experience=moreThan6&employment=full&skill=123&skill=124&skill=125&area=1&industry=7&specialization=1.395&specialization=1.221&education_level=high&order_by=relevance&period=30
 ```
 Generated Query: https://api.hh.ru/resumes?text=ETL+Java+Bash+HBase+PostgreSQL+ClickHouse+YQL+YTsaurus&skill=Java&skill=Bash&skill=SQL&skill=Kubernetes&experience=between3And6&experience=between6AndMore&area=113&employment=full&schedule=fullDay
+Generated Query: https://api.hh.ru/resumes?text=java%20developer
+Generated Query: https://api.hh.ru/resumes?text=разработчик&text=java
