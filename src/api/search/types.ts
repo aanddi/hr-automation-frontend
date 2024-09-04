@@ -1,16 +1,9 @@
+import { mock } from "@/modules/Home/mock";
+
 interface ISearchGpt {
    description: string;
 }
 
-interface IResponseSearchGpt {
-   urlHHruApi: string;
-   listCandidates: {
-      items: [];
-      found: number;
-      pages: number;
-      page: number;
-      per_page: number;
-   };
-}
+type IResponseSearchGpt = typeof mock;
 
 export type { ISearchGpt, IResponseSearchGpt };

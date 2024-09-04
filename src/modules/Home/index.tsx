@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { Button, Input, Spin, Typography } from "antd";
+import { Avatar, Button, Input, Spin, Typography } from "antd";
 import { Controller, useForm } from "react-hook-form";
 import useCreateSearch from "./model";
 import { IResponseSearchGpt, ISearchGpt } from "@api/search/types";
 import styles from "./Home.module.scss";
+
+import { Link } from "react-router-dom";
 
 const Home = () => {
    const { control, handleSubmit } = useForm<ISearchGpt>();
@@ -52,15 +54,75 @@ const Home = () => {
          <Typography.Paragraph className={styles.resultTets}>
             {isPending ? (
                <Spin />
-            ) : (
-               <>
-                  <b>Ответ:</b> <br />
-                  {state?.urlHHruApi}
-                  <br />
-                  <br />
-                  {JSON.stringify(state?.listCandidates)}
-               </>
-            )}
+            ) : state ? (
+               <div className={styles.response}>
+                  <h3>Ответ:</h3>
+                  <div className={styles.urlResopnse}>
+                     Сгенерированная gpt ссылка: "{state?.urlHHruApi}"
+                  </div>
+                  <Typography.Title level={4}>Резюме:</Typography.Title>
+                  <div className={styles.ribbon}>
+                     {state?.listCandidates?.items?.map((resume) => {
+                        return (
+                           <div className={styles.cardResume}>
+                              <div className={styles.wrapper}>
+                                 <div className={styles.header}>
+                                    <Avatar
+                                       src={resume?.photo?.medium}
+                                       size={100}
+                                    >
+                                       Фото
+                                    </Avatar>
+                                    <div className={styles.title}>
+                                       {resume?.title}
+                                    </div>
+                                 </div>
+                                 <div className={styles.body}>
+                                    <div className={styles.item}>
+                                       <span>Возраст:</span> {resume?.age}
+                                    </div>
+                                    <div className={styles.item}>
+                                       <span>Пол:</span> {resume?.gender?.name}
+                                    </div>
+                                    <div className={styles.item}>
+                                       <span>Зарплата:</span>
+                                       {resume?.salary?.amount}{" "}
+                                       {resume?.salary?.currency}
+                                    </div>
+                                    <div className={styles.item}>
+                                       <span>Опыт работы:</span>
+                                       {resume?.total_experience?.months}{" "}
+                                       месяцев
+                                    </div>
+                                    <div className={styles.item}>
+                                       <span>Образование:</span>
+                                       {resume?.education?.level?.name}
+                                    </div>
+                                 </div>
+                                 <div className={styles.footer}>
+                                    <Link to={resume.url}>
+                                       Посмотреть полное резюме
+                                    </Link>
+                                    <div className={styles.dowland}>
+                                       <Link
+                                          to={resume.actions.download.pdf.url}
+                                       >
+                                          Скачать PDF
+                                       </Link>
+                                       <Link
+                                          to={resume.actions.download.rtf.url}
+                                       >
+                                          Скачать RTF
+                                       </Link>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        );
+                     })}
+                  </div>
+               </div>
+            ) : null}
          </Typography.Paragraph>
       </div>
    );

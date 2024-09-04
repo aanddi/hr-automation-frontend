@@ -33,4 +33,59 @@
       margin-top: 32px;
       font-size: 16px;
    }
+
+   .response {
+      .ribbon {
+         display: grid;
+         grid-template-columns: 1fr 1fr 1fr;
+         gap: 24px;
+      }
+      
+      .cardResume {
+         display: inline-flex;
+         justify-content: center;
+         align-items: center;
+         box-shadow: 1px 1px 20px #1111112a;
+         border-radius: 20px;
+
+         .wrapper {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+         }
+
+         .header {
+            margin-bottom: 10px;
+            font-weight: 600;
+
+            .title {
+               width: 200px;
+            }
+         }
+
+         .body {
+            .item {
+               span {
+                  color: gray;
+                  margin-right: 10px;
+               }
+            }
+         }
+
+         .footer {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 16px;
+
+            .dowland {
+               display: flex;
+               gap: 16px;
+            }
+         }
+      }
+   }
 }
