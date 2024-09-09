@@ -13,6 +13,7 @@ export default defineConfig({
       '@common': path.resolve(__dirname, './src/common'),
       '@modules': path.resolve(__dirname, './src/modules'),
       '@routes': path.resolve(__dirname, './src/routes'),
+      '@store': path.resolve(__dirname, './src/store'),
       '@styles': path.resolve(__dirname, './src/styles'),
     },
   },

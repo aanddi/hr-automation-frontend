@@ -1,5 +1,5 @@
-import IСandidates from "@/api/candidates/type";
-import { Table, Tag } from "antd";
+import IСandidates from "@common/api/services/scoreball/type";
+import { Empty, Table } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { Link } from "react-router-dom";
 
@@ -27,12 +27,22 @@ const CandidatesTable = ({ data }: CandidatesTableProps) => {
          key: "age",
          align: "center",
          sorter: (a: IСandidates, b: IСandidates) => a.age - b.age,
+         render: (age: number) => age ? age : "-",
       },
       {
          title: "Должность",
          dataIndex: "profession",
          key: "profession",
          align: "center",
+         width: "400px"
+      },
+      {
+         title: "Опыт работы (месяц)",
+         dataIndex: "experience",
+         key: "experience",
+         align: "center",
+         sorter: (a: IСandidates, b: IСandidates) =>
+            a.experience - b.experience,
       },
       {
          title: "Резюме",
@@ -41,18 +51,22 @@ const CandidatesTable = ({ data }: CandidatesTableProps) => {
          align: "center",
          render: (link: string) => <Link to={link}>Ссылка</Link>,
       },
-      {
-         title: "Скорбалл",
-         dataIndex: "scorball",
-         key: "scorball",
-         align: "center",
-         render: (scrollball: number) => <Tag color="red">{scrollball}</Tag>,
-         sorter: (a: IСandidates, b: IСandidates) => a.scorball - b.scorball,
-         defaultSortOrder: "descend",
-      },
    ];
 
-   return <Table dataSource={data} columns={columns} />;
+   return (
+      <Table
+         dataSource={data}
+         pagination={false}
+         columns={columns}
+         locale={{
+            emptyText: (
+               <Empty description="Данные не найдены">
+                  Переформулируйте запрос или повторите поиск
+               </Empty>
+            ),
+         }}
+      />
+   );
 };
 
 export default CandidatesTable;
