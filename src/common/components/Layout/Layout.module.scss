@@ -1,4 +1,27 @@
-.container {
-  width: 1000px;
-  margin: 0 auto;
+.layout {
+   min-height: 100%;
+   background-color: #fff;
+
+   .header {
+      border-bottom: 1px solid #dedddd;
+      height: 72px;
+      display: flex;
+      align-items: center;
+
+      margin-bottom: 24px;
+
+      .content {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+
+         .navElem {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+            &:hover {
+               text-decoration: none;
+            }
+         }
+      }
+   }
 }

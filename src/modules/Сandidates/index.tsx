@@ -1,26 +1,35 @@
 import { Breadcrumb, Button, Typography } from "antd";
 import styles from "./Сandidates.module.scss";
-import mockData from "./mock";
-import IСandidates from "@api/candidates/type";
+import IСandidates from "@common/api/services/scoreball/type";
 import CandidatesTable from "./components/CandidatesTable";
 import { itemsBreadcrumb } from "./constans";
-import { utils as XlsxUtils, writeFile as XlsxWriteFile } from "xlsx";
 
-const Сandidates = () => {
-   const candidates: IСandidates[] = mockData?.map((candidate, index) => ({
+import { useAppSelector } from "@/common/hooks";
+import useAnalyzeResumes from "./model";
+import { generateExel } from "@/common/utils";
+
+const Candidates = () => {
+   const { resumes } = useAppSelector((state) => state.resumes);
+   const { mutate: createAnalyze, isPending } = useAnalyzeResumes();
+
+   const candidates: IСandidates[] = resumes?.map((candidate, index) => ({
       id: index + 1,
-      fullname: candidate.fullname,
+      fullname:
+         candidate?.first_name && candidate?.last_name
+            ? `${candidate?.last_name} ${candidate?.first_name}`
+            : "Не указано",
       age: candidate.age,
-      profession: candidate.profession,
-      linkResume: candidate.linkResume,
-      scorball: candidate.scorball,
+      profession: candidate.title,
+      experience: candidate.total_experience.months,
+      linkResume: candidate.url,
    }));
 
+   const handleAnalyzeResumes = () => {
+      createAnalyze(resumes);
+   };
+
    const handleDownloadExcel = () => {
-      const data = XlsxUtils.json_to_sheet(candidates);
-      const bookExcel = XlsxUtils.book_new();
-      XlsxUtils.book_append_sheet(bookExcel, data, "Кандидаты");
-      XlsxWriteFile(bookExcel, "candidates.xlsx");
+      generateExel<IСandidates>(candidates);
    };
 
    return (
@@ -32,7 +41,20 @@ const Сandidates = () => {
             </Typography.Title>
          </div>
          <div className={styles.actions}>
-            <Button type="primary" onClick={handleDownloadExcel}>
+            <Button
+               type="primary"
+               onClick={handleAnalyzeResumes}
+               loading={isPending}
+               disabled={resumes.length === 0}
+            >
+               Проанализировать и сохранить
+            </Button>
+            <Button
+               type="primary"
+               ghost
+               onClick={handleDownloadExcel}
+               disabled={resumes.length === 0}
+            >
                Скачать Excel
             </Button>
          </div>
@@ -41,4 +63,4 @@ const Сandidates = () => {
    );
 };
 
-export default Сandidates;
+export default Candidates;

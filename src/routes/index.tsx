@@ -1,7 +1,6 @@
 import { Spin } from "antd";
 import { lazy, PropsWithChildren, Suspense, useLayoutEffect } from "react";
 import { useLocation, useRoutes } from "react-router-dom";
-import Layout from "../common/components/Layout";
 
 const HomePage = lazy(() => import("./Home"));
 const СandidatesPage = lazy(() => import("./Сandidates"));
@@ -17,30 +16,18 @@ export const ScrollToTop = ({ children }: PropsWithChildren) => {
 };
 
 const Router = () => {
-   const routesSite = useRoutes([
+   const routes = useRoutes([
       {
          path: "/",
-         element: (
-            <Suspense fallback={<Spin />}>
-               <Layout>
-                  <HomePage />
-               </Layout>
-            </Suspense>
-         ),
+         element: <HomePage />,
       },
       {
          path: "candidates",
-         element: (
-            <Suspense fallback={<Spin />}>
-               <Layout>
-                  <СandidatesPage />
-               </Layout>
-            </Suspense>
-         ),
+         element: <СandidatesPage />,
       },
    ]);
 
-   return routesSite;
+   return <Suspense fallback={<Spin />}>{routes}</Suspense>;
 };
 
 export default Router;

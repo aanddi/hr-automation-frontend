@@ -4,7 +4,7 @@ interface IСandidates {
    age: number;
    profession: string;
    linkResume: string;
-   scorball: number;
+   experience: number;
 }
 
 export default IСandidates;
