@@ -3,6 +3,6 @@ import { SearchService } from '../services/search/index.js'
 
 const router = express.Router()
 
-router.post('/', SearchService.getSearch)
+router.post('/', SearchService.getSearchListCandidates)
 
 export default router

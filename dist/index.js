@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
 import SearchRoutes from './routes/search.route.js';
+import ScoreballRoutes from './routes/scoreball.route.js';
 const PORT = process.env.PORT || 5000;
 const app = express();
 //========== CONFIG ==========//
@@ -14,6 +15,7 @@ const route = express.Router();
 // установка глобального префикса всем маршрутам
 app.use('/api', route);
 route.use('/search', SearchRoutes);
+route.use('/scoreball', ScoreballRoutes);
 //========== SERVER ==========//
 app.listen(PORT, () => {
     console.log(`✓ Server: listening on port ${PORT}`);

@@ -6,6 +6,7 @@ import { Response } from 'express';
 
 import { SearchRequestBody } from './search.interface';
 import { RequestWithBody } from 'src/shared/types/request.type';
+import { extractUrl } from '../../shared/utils/extractUrl.js';
 
 dotenv.config();
 
@@ -14,14 +15,12 @@ const client = new OpenAI({
 });
 
 export const SearchService = {
-   async getSearch(req: RequestWithBody<SearchRequestBody>, res: Response) {
+   async getSearchListCandidates(req: RequestWithBody<SearchRequestBody>, res: Response) {
       const { description } = req.body;
 
-      const urlHHruApi = await getUrlHHru(description, res);
+      const urlHHruApi = (await getUrlHHru(description, res)) as string;
 
       const listCandidates = await getListСandidates(urlHHruApi as string, res);
-
-      // const getScorballResult = await getScorball();
 
       return res.json({ urlHHruApi, listCandidates });
    }
@@ -64,14 +63,15 @@ const getUrlHHru = async (desc: string, res: Response) => {
 
          fs.appendFileSync('requests.log', `Generated Query: ${generatedQuery}\n`);
 
-         return generatedQuery;
+         // вытаскиваем url из ответа
+         return extractUrl(generatedQuery);
       } else {
          console.log('Run status:', run.status);
-         return res.status(500).json({ message: 'Ошибка при создании запроса' });
+         return res.status(500).json({ message: 'Ошибка при создании запроса. Метод => getUrlHHru' });
       }
    } catch (error) {
-      console.error('Ошибка при взаимодействии с OpenAI API:', error);
-      return res.status(500).json({ message: 'Ошибка при создании запроса' });
+      console.error('Ошибка при взаимодействии с OpenAI API. Метод => getUrlHHru: ', error);
+      return res.status(500).json({ message: 'Ошибка при взаимодействии с OpenAI API. Метод => getUrlHHru' });
    }
 };
 
@@ -91,10 +91,8 @@ const getListСandidates = async (url: string, res: Response) => {
 
       return listCandidates.data;
    } catch (error) {
-      // console.error('Ошибка при получении списка:', error);
-      // res.status(500).send('Ошибка при получении списка');
+      console.error('Ошибка при взаимодействии с HHru API. Метод => getListСandidates', error);
+      res.status(500).send('Ошибка при взаимодействии с HHru API. Метод => getListСandidates');
       return [];
    }
 };
-
-// const getScorball = async () => {};

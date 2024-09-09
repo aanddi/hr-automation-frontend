@@ -19,3 +19,9 @@ https://api.hh.ru/resumes?text=ETL&search_field=name,skills,experience&experienc
 Generated Query: https://api.hh.ru/resumes?text=ETL+Java+Bash+HBase+PostgreSQL+ClickHouse+YQL+YTsaurus&skill=Java&skill=Bash&skill=SQL&skill=Kubernetes&experience=between3And6&experience=between6AndMore&area=113&employment=full&schedule=fullDay
 Generated Query: https://api.hh.ru/resumes?text=java%20developer
 Generated Query: https://api.hh.ru/resumes?text=разработчик&text=java
+Generated Query: ```
+https://api.hh.ru/resumes?text=разработчик%20frontend&area=113
+```
+Generated Query: ```json
+https://api.hh.ru/resumes?text=разработчик&area=113
+```
