@@ -27,14 +27,14 @@ const CandidatesTable = ({ data }: CandidatesTableProps) => {
          key: "age",
          align: "center",
          sorter: (a: IСandidates, b: IСandidates) => a.age - b.age,
-         render: (age: number) => age ? age : "-",
+         render: (age: number) => (age ? age : "-"),
       },
       {
          title: "Должность",
          dataIndex: "profession",
          key: "profession",
          align: "center",
-         width: "400px"
+         width: "400px",
       },
       {
          title: "Опыт работы (месяц)",
@@ -43,6 +43,7 @@ const CandidatesTable = ({ data }: CandidatesTableProps) => {
          align: "center",
          sorter: (a: IСandidates, b: IСandidates) =>
             a.experience - b.experience,
+         render: (experience: number) => (experience ? experience : "-"),
       },
       {
          title: "Резюме",
@@ -60,7 +61,7 @@ const CandidatesTable = ({ data }: CandidatesTableProps) => {
          columns={columns}
          locale={{
             emptyText: (
-               <Empty description="Данные не найдены">
+               <Empty description="Резюме не найдены">
                   Переформулируйте запрос или повторите поиск
                </Empty>
             ),

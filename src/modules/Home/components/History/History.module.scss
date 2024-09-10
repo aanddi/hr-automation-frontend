@@ -1,0 +1,64 @@
+@import "/src/styles/variables.scss";
+
+.history {
+   display: flex;
+   flex-direction: column;
+   gap: 16px;
+
+   margin-top: 48px;
+
+   .header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 8px;
+
+      .title {
+         margin: 0;
+         font-weight: 700;
+      }
+   }
+
+   .card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      border-radius: 15px;
+      background-color: $blue-light;
+      padding: 20px;
+
+      .text {
+         display: flex;
+         align-items: center;
+         gap: 16px;
+         color: $gray;
+         line-height: 22px;
+         text-align: justify;
+         width: 95%;
+
+         .textIcon {
+            display: flex;
+            align-items: center;
+         }
+      }
+
+      .closeBtn {
+         color: $gray;
+         border-color: $gray;
+         border-radius: 20px;
+         background-color: transparent;
+
+         &:hover {
+            color: red !important;
+            border-color: red;
+            background-color: transparent;
+         }
+      }
+
+      &:hover {
+         cursor: pointer;
+         background-color: darken($blue-light, 5%);
+      }
+   }
+}

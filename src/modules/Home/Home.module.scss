@@ -1,9 +1,8 @@
 @import "/src/styles/variables.scss";
 
 .home {
+   margin: 60px 0;
    .search {
-      margin-top: 100px;
-
       .header {
          margin-bottom: 34px;
 
@@ -24,12 +23,19 @@
          }
 
          .textarea {
-            background-color: $inputColor;
+            background-color: $blue-light;
+
+            &.error {
+               background-color: #ffe2da;
+               &::placeholder {
+                  color: red;
+               }
+            }
          }
       }
    }
 
-   .footer {
-      margin-top: 24px;
+   .errors {
+      margin-top: 16px;
    }
 }
