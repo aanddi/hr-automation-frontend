@@ -25,3 +25,73 @@ https://api.hh.ru/resumes?text=разработчик%20frontend&area=113
 Generated Query: ```json
 https://api.hh.ru/resumes?text=разработчик&area=113
 ```
+Generated Query: https://api.hh.ru/resumes?text=frontend+разработчик&area=113&area=15
+Generated Query: https://api.hh.ru/resumes?text=Frontend+разработчик&area=97
+Generated Query: ```json
+https://api.hh.ru/resumes?text=Frontend&text=Разработчик&area=1528
+```
+Generated Query: https://api.hh.ru/resumes?text=Разработчик%20Frontend&area=1255
+Generated Query: https://api.hh.ru/resumes?text=Разработчик%20Frontend&area=Криме%203210
+Generated Query: https://api.hh.ru/resumes?text=Frontend&area=2376
+Generated Query: https://api.hh.ru/resumes?text=Frontend&area=100&moved=Simferopol
+Generated Query: https://api.hh.ru/resumes?text=Frontend&area=1401
+Generated Query: https://api.hh.ru/resumes?text=Разработчик+Frontend&area=2842
+Generated Query: https://api.hh.ru/resumes?text=Разработчик%20Frontend%20React
+Generated Query: ```json
+https://api.hh.ru/resumes?text=Frontend%20разработчик
+```
+Generated Query: https://api.hh.ru/resumes?text=Фронтенд+разработчик
+Generated Query: https://api.hh.ru/resumes?text=frontend%20разработчик
+Generated Query: ```plaintext
+https://api.hh.ru/resumes?text=фронтенд%20разработчик
+```
+Generated Query: ```json
+https://api.hh.ru/resumes?text=Frontend-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA+Angular
+```
+Generated Query: ```json
+https://api.hh.ru/resumes?text=фронтенд%20разработчик
+```
+Generated Query: https://api.hh.ru/resumes?text=Фронтенд+разработчик
+Generated Query: https://api.hh.ru/resumes?text=Forntend%20разработчик&text.logic=all&text.field=everywhere&text.period=all_time
+Generated Query: ```json
+https://api.hh.ru/resumes?text=Фронтенд разработчик
+```
+Generated Query: https://api.hh.ru/resumes?text=%D0%A4%D1%80%D0%BE%D0%BD%D1%82%D0%B5%D0%BD%D0%B4+%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%87%D0%B8%D0%BA
+Generated Query: ```json
+https://api.hh.ru/resumes?text=frontend
+```
+Generated Query: https://api.hh.ru/resumes?text=frontend
+Generated Query: ```json
+GET https://api.hh.ru/resumes?text=frontend
+```
+Generated Query: https://api.hh.ru/resumes?text=frontend%20разработчик
+Generated Query: ```json
+https://api.hh.ru/resumes?text=Frontend
+```
+Generated Query: https://api.hh.ru/resumes?text=Java
+Generated Query: ```json
+https://api.hh.ru/resumes?text=С%2B%2B&text=Linux&text=gcc&text=STL&text=ООП&text=%22паттерны+проектирования%22&text=многопоточность&text=%22клиент-сервер%22&text=http&text=https&text=JSON&text=XML&text=SQL&skill=148&skill=15743&skill=5445&skill=7827&skill=15448&skill=1985&skill=1987&skill=2703&skill=2727&skill=7015&skill=7059&skill=8484
+```
+Generated Query: https://api.hh.ru/resumes?text=Frontend&area=1261
+Generated Query: ```
+https://api.hh.ru/resumes?text=C%2B%2B+developer&text.logic=all&text.field=skills&experience=between1And3&experience=between3And6&employment=full&employment=part&employment=project&employment=volunteer&employment=probation&schedule=fullDay&schedule=shift&schedule=flexible&schedule=remote&skill=Linux&skill=gcc&skill=STL&skill=OOP&skill=design+patterns&skill=multithreading&skill=client-server+applications&skill=HTTP&skill=JSON&skill=XML&skill=SQL&language=eng&language_level=b1
+```
+Generated Query: https://api.hh.ru/resumes?text=C%2FC%2B%2B&text=стандарт+11&text=умные+указатели&text=лямбда&text=перемещения
+Generated Query: https://api.hh.ru/resumes?text=Frontend
+Generated Query: ```
+https://api.hh.ru/resumes?text=Backend%20разработчик
+```
+Generated Query: ```json
+GET https://api.hh.ru/resumes?text=Backend%20разработчик
+```
+Generated Query: https://api.hh.ru/resumes?text=Backend%20разработчик
+Generated Query: https://api.hh.ru/resumes?text=frontend
+Generated Query: ```https://api.hh.ru/resumes?text=backend```
+Generated Query: ```json
+https://api.hh.ru/resumes?text=frontend&text=разработчик&area=Крым&area=Симферополь
+```
+Generated Query: ```json
+https://api.hh.ru/resumes?text=frontend%20разработчик&area=97
+```
+Generated Query: https://api.hh.ru/resumes?text=frontend+разработчик&area=1
+Generated Query: https://api.hh.ru/resumes?text=C&text.logic=all&text.field=skills&text=c++&text.logic=all&text.field=skills&text=Python&text.logic=all&text.field=skills&text=flash&text.logic=all&text.field=experience&text=SPI&text.logic=all&text.field=experience&text=I2C&text.logic=all&text.field=experience&text=USB&text.logic=all&text.field=experience&text=UART&text.logic=all&text.field=experience&text=GPIO&text.logic=all&text.field=everywhere&text="схемотехника"&text.logic=all&text.field=skills&text="измерительные+приборы"&text.logic=all&text.field=all_time&text="чтение+документации"&text.logic=all&text.field=experience&text="ПО+для+микроконтроллеров"&text.logic=all&text.field=experience&text="аппаратные+средства"&text.logic=all&text.field=experience&text="разработка+под+Linux"&text.logic=all&text.field=education&text=радиотехническое&text.logic=all&text.field=education&text=электротехническое

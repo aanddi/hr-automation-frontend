@@ -19,9 +19,9 @@ const getUrlHHru = async (desc, res) => {
     const assistanSearchtId = process.env.OPENAI_ASSISTANT_SEARCH_ID;
     const prompt = `На основе следующего описания вакансии: "${desc}", сформируй GET-запрос в формате JSON для API hh.ru для поиска резюме кандидатов.`;
     if (!assistanSearchtId)
-        return res.status(500).json({ message: 'Assistant ID не установлен.' });
+        return res.status(500).json({ message: 'Server: Assistant ID не установлен.' });
     if (!desc)
-        return res.status(400).json({ message: 'Не указано описание' });
+        return res.status(400).json({ message: 'Server: Не указано описание' });
     try {
         const thread = await client.beta.threads.create();
         await client.beta.threads.messages.create(thread.id, {
@@ -48,12 +48,12 @@ const getUrlHHru = async (desc, res) => {
         }
         else {
             console.log('Run status:', run.status);
-            return res.status(500).json({ message: 'Ошибка при создании запроса. Метод => getUrlHHru' });
+            return res.status(500).json({ message: 'Server: Ошибка при создании запроса ассистенту. Метод => getUrlHHru' });
         }
     }
     catch (error) {
         console.error('Ошибка при взаимодействии с OpenAI API. Метод => getUrlHHru: ', error);
-        return res.status(500).json({ message: 'Ошибка при взаимодействии с OpenAI API. Метод => getUrlHHru' });
+        return res.status(500).json({ message: 'Server: Ошибка при взаимодействии с OpenAI API. Метод => getUrlHHru' });
     }
 };
 const getListСandidates = async (url, res) => {
@@ -72,7 +72,7 @@ const getListСandidates = async (url, res) => {
     }
     catch (error) {
         console.error('Ошибка при взаимодействии с HHru API. Метод => getListСandidates', error);
-        res.status(500).send('Ошибка при взаимодействии с HHru API. Метод => getListСandidates');
+        res.status(500).json({ message: 'Server: Ошибка при взаимодействии с HHru API. Метод => getListСandidates' });
         return [];
     }
 };
