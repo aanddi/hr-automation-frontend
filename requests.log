@@ -95,3 +95,6 @@ https://api.hh.ru/resumes?text=frontend%20разработчик&area=97
 ```
 Generated Query: https://api.hh.ru/resumes?text=frontend+разработчик&area=1
 Generated Query: https://api.hh.ru/resumes?text=C&text.logic=all&text.field=skills&text=c++&text.logic=all&text.field=skills&text=Python&text.logic=all&text.field=skills&text=flash&text.logic=all&text.field=experience&text=SPI&text.logic=all&text.field=experience&text=I2C&text.logic=all&text.field=experience&text=USB&text.logic=all&text.field=experience&text=UART&text.logic=all&text.field=experience&text=GPIO&text.logic=all&text.field=everywhere&text="схемотехника"&text.logic=all&text.field=skills&text="измерительные+приборы"&text.logic=all&text.field=all_time&text="чтение+документации"&text.logic=all&text.field=experience&text="ПО+для+микроконтроллеров"&text.logic=all&text.field=experience&text="аппаратные+средства"&text.logic=all&text.field=experience&text="разработка+под+Linux"&text.logic=all&text.field=education&text=радиотехническое&text.logic=all&text.field=education&text=электротехническое
+Generated Query: https://api.hh.ru/resumes?text=Frontend%20developer&experience=5
+Generated Query: https://api.hh.ru/resumes?text=Frontend%20developer&experience=between3And6
+Generated Query: https://api.hh.ru/resumes?text=Frontend Developer&experience=between3And6
