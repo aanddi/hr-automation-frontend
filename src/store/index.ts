@@ -16,9 +16,11 @@ import {
 } from "redux-persist";
 import request from "./slices/request.slice";
 import historys from "./slices/historys.slice";
+import user from "./slices/user.slice";
 import storage from "redux-persist/lib/storage";
 
 const rootReducer = combineReducers({
+   user,
    request,
    historys,
 });

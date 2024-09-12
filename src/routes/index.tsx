@@ -1,43 +1,72 @@
-import { Spin } from "antd";
-import { lazy, PropsWithChildren, Suspense, useLayoutEffect } from "react";
-import { useLocation, useRoutes } from "react-router-dom";
+import { PropsWithChildren, Suspense, lazy, useLayoutEffect } from 'react';
+import { useLocation, useRoutes } from 'react-router-dom';
 
-const HomePage = lazy(() => import("./Home"));
-const СandidatesPage = lazy(() => import("./Сandidates"));
-const ListRequestsPage = lazy(() => import("./ListRequests"));
-const RequestPage = lazy(() => import("./Request"));
+import { AppLayout } from '@common/components';
+import AuthProvider from '@common/providers/AuthProvider';
+
+import { Spin } from 'antd';
+
+const AuthPage = lazy(() => import('./Auth'));
+const HomePage = lazy(() => import('./Home'));
+const СandidatesPage = lazy(() => import('./Сandidates'));
+const ListRequestsPage = lazy(() => import('./ListRequests'));
+const RequestPage = lazy(() => import('./Request'));
 
 export const ScrollToTop = ({ children }: PropsWithChildren) => {
-   const location = useLocation();
+  const location = useLocation();
 
-   useLayoutEffect(() => {
-      document.documentElement.scrollTo(0, 0);
-   }, [location.pathname]);
+  useLayoutEffect(() => {
+    document.documentElement.scrollTo(0, 0);
+  }, [location.pathname]);
 
-   return children;
+  return children;
 };
 
 const Router = () => {
-   const routes = useRoutes([
-      {
-         path: "/",
-         element: <HomePage />,
-      },
-      {
-         path: "/candidates",
-         element: <СandidatesPage />,
-      },
-      {
-         path: "/requests",
-         element: <ListRequestsPage />,
-      },
-      {
-         path: "/request/:id",
-         element: <RequestPage />,
-      },
-   ]);
+  const routes = useRoutes([
+    {
+      path: '/',
+      element: (
+        <AuthProvider>
+          <HomePage />
+        </AuthProvider>
+      ),
+    },
+    {
+      path: '/auth',
+      element: <AuthPage />,
+    },
+    {
+      path: '/candidates',
+      element: (
+        <AuthProvider>
+          <СandidatesPage />
+        </AuthProvider>
+      ),
+    },
+    {
+      path: '/requests',
+      element: (
+        <AuthProvider>
+          <ListRequestsPage />
+        </AuthProvider>
+      ),
+    },
+    {
+      path: '/request/:id',
+      element: (
+        <AuthProvider>
+          <RequestPage />
+        </AuthProvider>
+      ),
+    },
+  ]);
 
-   return <Suspense fallback={<Spin />}>{routes}</Suspense>;
+  return (
+    <AppLayout>
+      <Suspense fallback={<Spin />}>{routes}</Suspense>
+    </AppLayout>
+  );
 };
 
 export default Router;
