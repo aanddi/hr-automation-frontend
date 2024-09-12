@@ -26,7 +26,7 @@ interface IResumeRequest {
   middleName: string;
   age: number;
   title: string;
-  linkResume: string;
+  urlResume: string;
   totalExperience: number;
   scoreball: number;
 }

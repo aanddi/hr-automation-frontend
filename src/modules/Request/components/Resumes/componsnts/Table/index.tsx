@@ -29,7 +29,7 @@ const ResumeTable = ({ data }: CandidatesTableProps) => {
         age: elem.age,
         title: elem.title,
         totalExperience: elem.totalExperience,
-        linkResume: elem.linkResume,
+        linkResume: elem.urlResume,
         scoreball: elem.scoreball,
       };
     }) || [];
@@ -60,7 +60,7 @@ const ResumeTable = ({ data }: CandidatesTableProps) => {
       dataIndex: 'linkResume',
       key: 'linkResume',
       align: 'center',
-      render: (link: string) => <Link to={link}>Ссылка</Link>,
+      render: (linkResume: string) => <Link to={linkResume}>Ссылка</Link>,
     },
     {
       title: 'Возраст',

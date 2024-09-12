@@ -1,26 +1,25 @@
 import { useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ScoreballService } from '@common/api/services/scoreball';
 
 import { IRequestStore } from '@store/slices/request.slice';
 
 const useAnalyzeResumes = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   return useMutation({
     mutationFn: async (request: IRequestStore) => {
       const response = await toast.promise(ScoreballService.createScoreball(request), {
         loading: 'Анализ списка резюме...',
-        success: 'Успех!',
+        success: 'Анализ проведен успешно!',
         error: 'Ошибка. Анализ провалился',
       });
 
       return response.data;
     },
     onSuccess(data) {
-      console.log(data);
-      // navigate(`/request/${data.idRequest}`);
+      navigate(`/request/${data.idRequest}`);
     },
     onError(err: any) {
       console.error('Ошибка при выполнении метода => useAnalyzeResumes', err);
