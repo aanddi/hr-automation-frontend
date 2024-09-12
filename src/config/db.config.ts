@@ -22,6 +22,7 @@ const AppDataSource = new DataSource({
    username: process.env.DATA_BASE_USERNAME,
    password: process.env.DATA_BASE_PASSWORD,
    synchronize: true,
+   ssl: true,
    entities: [...entities]
 });
 
