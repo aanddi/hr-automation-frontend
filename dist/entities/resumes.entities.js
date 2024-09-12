@@ -12,6 +12,7 @@ import { Request } from './request.entities.js';
 let Resumes = class Resumes {
     idResume;
     idResumeHh;
+    urlResume;
     firstName;
     lastName;
     middleName;
@@ -27,9 +28,13 @@ __decorate([
     __metadata("design:type", Number)
 ], Resumes.prototype, "idResume", void 0);
 __decorate([
-    Column({ name: 'resume_hh_id' }),
+    Column({ name: 'resume_hh_id', nullable: true }),
     __metadata("design:type", String)
 ], Resumes.prototype, "idResumeHh", void 0);
+__decorate([
+    Column({ name: 'resume_url', nullable: true }),
+    __metadata("design:type", String)
+], Resumes.prototype, "urlResume", void 0);
 __decorate([
     Column({ name: 'first_name', nullable: true }),
     __metadata("design:type", String)

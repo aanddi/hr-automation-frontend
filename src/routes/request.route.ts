@@ -7,7 +7,7 @@ router.get('/all', RequestService.getAllRequests);
 
 router.get('/:id', RequestService.getRequestsById);
 
-router.post('/create', RequestService.createRequests);
+// router.post('/create', RequestService.createRequests);
 
 router.delete('/delete/:id', RequestService.deleteRequestById);
 

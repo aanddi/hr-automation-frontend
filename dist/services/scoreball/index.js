@@ -1,16 +1,18 @@
 import dotenv from 'dotenv';
 import { useAssistant } from '../../shared/utils/useAssistant.js';
 import { extractResumes } from '../../shared/utils/extractResumes.js';
+import { RequestService } from '../request/index.js';
 dotenv.config();
 export const ScoreballService = {
     async getAnalyzeListCandidates(req, res) {
-        const { resumes } = req.body;
+        const { resumes, prompt, urlHhRuApi } = req.body;
         const listCandidates = [];
         for (const item of resumes) {
             const response = await getScoreball(item, res);
             listCandidates.push(response);
         }
-        return res.json({ listCandidates });
+        const idSavedRequest = await RequestService.createRequests(listCandidates, urlHhRuApi, prompt);
+        return res.json({ ...idSavedRequest, listCandidates });
     }
 };
 const getScoreball = async (resumes, res) => {

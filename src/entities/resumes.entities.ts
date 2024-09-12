@@ -7,8 +7,11 @@ export class Resumes {
    @PrimaryGeneratedColumn({ name: 'resume_id' })
    idResume: number;
 
-   @Column({ name: 'resume_hh_id' })
+   @Column({ name: 'resume_hh_id', nullable: true })
    idResumeHh: string;
+
+   @Column({ name: 'resume_url', nullable: true })
+   urlResume: string;
 
    @Column({ name: 'first_name', nullable: true })
    firstName: string;

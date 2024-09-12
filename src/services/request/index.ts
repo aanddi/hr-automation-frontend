@@ -51,42 +51,41 @@ export const RequestService = {
       return res.json(response);
    },
 
-   async createRequests(req: RequestWithBody<ICreateRequest>, res: Response) {
-      const { resumes, urlHh, prompt } = req.body;
+   async createRequests(resumes: any[], urlHh: string, prompt: string) {
+      // if (!resumes || !urlHh || !prompt)
+      //    return res
+      //       .status(400)
+      //       .json({ message: 'Server: Ошибка при создании запроса. Обьязательные параметры не указаны' });
 
-      if (!resumes || !urlHh || !prompt)
-         return res
-            .status(400)
-            .json({ message: 'Server: Ошибка при создании запроса. Обьязательные параметры не указаны' });
+      if (!resumes) throw new Error('Резюме не найдены');
 
       try {
          const newRequest = new Request();
          newRequest.urlHh = urlHh;
          newRequest.prompt = prompt;
+         const addedRequest = await requestsOrm.save(newRequest);
 
-         const addedRequest = requestsOrm.save(newRequest);
-
-         resumes.forEach(resume => {
+         resumes.forEach(async resume => {
             const newResume = new Resumes();
-            newResume.idResumeHh = resume.idResumeHh;
+            newResume.idResumeHh = resume.id;
             newResume.firstName = resume.firstName;
             newResume.lastName = resume.lastName;
             newResume.middleName = resume.middleName;
             newResume.age = resume.age;
             newResume.title = resume.title;
-            newResume.totalExperience = resume.totalExperience;
+            newResume.totalExperience = resume.total_experience.months;
+            newResume.urlResume = resume.url;
             newResume.scoreball = resume.scoreball;
             newResume.request = newRequest;
 
-            const addedResume = resumeOrm.save(newResume);
+            await resumeOrm.save(newResume);
          });
 
-         const idRequest = (await addedRequest).idRequest;
+         const idRequest = addedRequest.idRequest;
 
-         return res.json({ idRequest: idRequest });
+         return { idRequest: idRequest };
       } catch (e) {
          console.log(e);
-         return res.status(500).json({ message: 'Server: Ошибка при создании запроса.' });
       }
    },
 
