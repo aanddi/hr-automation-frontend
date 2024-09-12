@@ -1,41 +1,37 @@
-@import "/src/styles/variables.scss";
+@import '/src/styles/variables.scss';
 
 .home {
-   margin: 60px 0;
-   .search {
-      .header {
-         margin-bottom: 34px;
+  margin: 60px 0;
 
-         .title {
-            text-align: center;
-            font-weight: 700 !important;
-         }
+  .search {
+    .header {
+      margin-bottom: 34px;
+
+      .title {
+        text-align: center;
+      }
+    }
+
+    .content {
+      display: flex;
+      gap: 16px;
+
+      .button {
+        width: 180px;
+        height: 41px;
+        align-self: flex-end;
       }
 
-      .content {
-         display: flex;
-         gap: 16px;
+      .textarea {
+        background-color: $blue-light;
 
-         .button {
-            width: 180px;
-            height: 41px;
-            align-self: flex-end;
-         }
-
-         .textarea {
-            background-color: $blue-light;
-
-            &.error {
-               background-color: #ffe2da;
-               &::placeholder {
-                  color: red;
-               }
-            }
-         }
+        &.error {
+          background-color: #fff2f0;
+          &::placeholder {
+            color: red;
+          }
+        }
       }
-   }
-
-   .errors {
-      margin-top: 16px;
-   }
+    }
+  }
 }

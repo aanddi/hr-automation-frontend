@@ -2,5 +2,5 @@
 
 
 ```bash
-VITE_SERVER_API_URL=https://hr-automation-9142.onrender.com/api/
+VITE_SERVER_API_URL=**********
 ```

@@ -1,4 +1,4 @@
-import IСandidates from "@common/api/services/scoreball/type";
+import { IСandidates } from "@common/api/services/scoreball/type";
 import { Empty, Table } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { Link } from "react-router-dom";
@@ -20,6 +20,7 @@ const CandidatesTable = ({ data }: CandidatesTableProps) => {
          dataIndex: "fullname",
          key: "fullname",
          align: "center",
+         width: '270px',
       },
       {
          title: "Возраст",
@@ -41,6 +42,7 @@ const CandidatesTable = ({ data }: CandidatesTableProps) => {
          dataIndex: "experience",
          key: "experience",
          align: "center",
+         width: '220px',
          sorter: (a: IСandidates, b: IСandidates) =>
             a.experience - b.experience,
          render: (experience: number) => (experience ? experience : "-"),

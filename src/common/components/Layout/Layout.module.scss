@@ -1,6 +1,7 @@
 .layout {
    min-height: 100%;
    background-color: #fff;
+   padding-bottom: 50px;
 
    .header {
       border-bottom: 1px solid #dedddd;
@@ -23,5 +24,9 @@
             }
          }
       }
+   }
+
+   .floatButton {
+      display: flex;
    }
 }

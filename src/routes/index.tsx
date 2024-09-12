@@ -4,6 +4,8 @@ import { useLocation, useRoutes } from "react-router-dom";
 
 const HomePage = lazy(() => import("./Home"));
 const СandidatesPage = lazy(() => import("./Сandidates"));
+const ListRequestsPage = lazy(() => import("./ListRequests"));
+const RequestPage = lazy(() => import("./Request"));
 
 export const ScrollToTop = ({ children }: PropsWithChildren) => {
    const location = useLocation();
@@ -22,8 +24,16 @@ const Router = () => {
          element: <HomePage />,
       },
       {
-         path: "candidates",
+         path: "/candidates",
          element: <СandidatesPage />,
+      },
+      {
+         path: "/requests",
+         element: <ListRequestsPage />,
+      },
+      {
+         path: "/request/:id",
+         element: <RequestPage />,
       },
    ]);
 
