@@ -23,6 +23,7 @@ export const useAssistant = async (assistanId: string, desc: string, res: Respon
           assistant_id: assistanId
        });
  
+
        if (run.status === 'completed') {
           const messages = await client.beta.threads.messages.list(run.thread_id);
  
@@ -36,8 +37,9 @@ export const useAssistant = async (assistanId: string, desc: string, res: Respon
                    generatedQuery += block.text.value;
                 }
              }
+             
           }
-          
+       
           return generatedQuery;
        } else {
           console.log('Run status:', run.status);

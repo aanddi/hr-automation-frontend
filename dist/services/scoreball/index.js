@@ -5,7 +5,11 @@ dotenv.config();
 export const ScoreballService = {
     async getAnalyzeListCandidates(req, res) {
         const { resumes } = req.body;
-        const listCandidates = await getScoreball(resumes, res);
+        const listCandidates = [];
+        for (const item of resumes) {
+            const response = await getScoreball(item, res);
+            listCandidates.push(response);
+        }
         return res.json({ listCandidates });
     }
 };
@@ -15,7 +19,8 @@ const getScoreball = async (resumes, res) => {
         return res.status(500).json({ message: 'Server: Assistant ID не установлен.' });
     if (!resumes)
         return res.status(400).json({ message: 'Server: Нет списка резюме' });
-    const scoring = await useAssistant(assistanScoreBallId, resumes, res);
+    const body = JSON.stringify(resumes);
+    const scoring = await useAssistant(assistanScoreBallId, body, res);
     if (typeof scoring === 'string') {
         return extractResumes(scoring);
     }

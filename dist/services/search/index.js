@@ -21,7 +21,7 @@ const getUrlHHru = async (desc, res) => {
     if (typeof response === 'string') {
         return extractUrl(response);
     }
-    return res;
+    return response;
 };
 const getListСandidates = async (url, res) => {
     const accessToken = process.env.HHRU_API_ACCESS_TOKEN;

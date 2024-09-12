@@ -24,6 +24,7 @@ export const SearchService = {
 
 const getUrlHHru = async (desc: string, res: Response) => {
    const assistanSearchtId = process.env.OPENAI_ASSISTANT_SEARCH_ID;
+ 
 
    if (!assistanSearchtId) return res.status(500).json({ message: 'Server: Assistant ID не установлен.' });
    if (!desc) return res.status(400).json({ message: 'Server: Не указано описание' });
@@ -34,7 +35,7 @@ const getUrlHHru = async (desc: string, res: Response) => {
       return extractUrl(response);
    }
 
-   return res;
+   return response;
 };
 
 
