@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Request } from './request.entities.js';
 let Resumes = class Resumes {
-    id;
+    idResume;
     idResumeHh;
     firstName;
     lastName;
@@ -23,9 +23,9 @@ let Resumes = class Resumes {
     request;
 };
 __decorate([
-    PrimaryGeneratedColumn({ name: 'rusume_id' }),
+    PrimaryGeneratedColumn({ name: 'resume_id' }),
     __metadata("design:type", Number)
-], Resumes.prototype, "id", void 0);
+], Resumes.prototype, "idResume", void 0);
 __decorate([
     Column({ name: 'resume_hh_id' }),
     __metadata("design:type", String)
@@ -59,7 +59,7 @@ __decorate([
     __metadata("design:type", Number)
 ], Resumes.prototype, "scoreball", void 0);
 __decorate([
-    ManyToOne(() => Request, request => request.resumes, { nullable: true }),
+    ManyToOne(() => Request, request => request.resumes, { onDelete: 'CASCADE' }),
     JoinColumn({ name: 'request_id' }),
     __metadata("design:type", Request)
 ], Resumes.prototype, "request", void 0);

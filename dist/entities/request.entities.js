@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Resumes } from './resumes.entities.js';
 let Request = class Request {
-    id;
+    idRequest;
     createdAt;
     urlHh;
     prompt;
@@ -20,7 +20,7 @@ let Request = class Request {
 __decorate([
     PrimaryGeneratedColumn({ name: 'request_id' }),
     __metadata("design:type", Number)
-], Request.prototype, "id", void 0);
+], Request.prototype, "idRequest", void 0);
 __decorate([
     CreateDateColumn({ name: 'created_at' }),
     __metadata("design:type", Date)
@@ -35,7 +35,7 @@ __decorate([
 ], Request.prototype, "prompt", void 0);
 __decorate([
     OneToMany(() => Resumes, resumes => resumes.request),
-    __metadata("design:type", Array)
+    __metadata("design:type", Object)
 ], Request.prototype, "resumes", void 0);
 Request = __decorate([
     Entity()

@@ -8,6 +8,7 @@ import AppDataSource from './config/db.config.js'
 
 import SearchRoutes from './routes/search.route.js'
 import ScoreballRoutes from './routes/scoreball.route.js'
+import RequestRoutes from './routes/request.route.js'
 
 const PORT = process.env.PORT || 5000
 
@@ -26,6 +27,7 @@ app.use('/api', route)
 
 route.use('/search', SearchRoutes)
 route.use('/scoreball', ScoreballRoutes)
+route.use('/request', RequestRoutes)
 
 //========== SERVER ==========//
 

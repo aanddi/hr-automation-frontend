@@ -1,10 +1,10 @@
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, Relation } from 'typeorm';
 import { Resumes } from './resumes.entities.js';
 
 @Entity()
 export class Request {
    @PrimaryGeneratedColumn({ name: 'request_id' })
-   id: number;
+   idRequest: number;
 
    @CreateDateColumn({ name: 'created_at' })
    createdAt: Date;
@@ -18,5 +18,5 @@ export class Request {
    //=========== СВЯЗЬ ===========//
 
    @OneToMany(() => Resumes, resumes => resumes.request)
-   resumes: Resumes[];
+   resumes: Relation<Resumes[]>; 
 }

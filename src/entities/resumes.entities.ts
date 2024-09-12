@@ -4,8 +4,8 @@ import { Request } from './request.entities.js';
 
 @Entity()
 export class Resumes {
-   @PrimaryGeneratedColumn({ name: 'rusume_id' })
-   id: number;
+   @PrimaryGeneratedColumn({ name: 'resume_id' })
+   idResume: number;
 
    @Column({ name: 'resume_hh_id' })
    idResumeHh: string;
@@ -33,7 +33,7 @@ export class Resumes {
 
    //=========== СВЯЗЬ ===========//
 
-   @ManyToOne(() => Request, request => request.resumes, { nullable: true })
+   @ManyToOne(() => Request, request => request.resumes, { onDelete: 'CASCADE' })
    @JoinColumn({ name: 'request_id' })
    request: Request;
 }
