@@ -1,0 +1,11 @@
+.list {
+  .content {
+    margin-top: 24px;
+  } 
+
+  .ribon {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+}

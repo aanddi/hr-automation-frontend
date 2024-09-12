@@ -1,5 +1,5 @@
-import { Сandidates } from "../../modules";
+import { Candidates } from "../../modules";
 
-const СandidatesPage = () => <Сandidates />;
+const СandidatesPage = () => <Candidates />;
 
 export default СandidatesPage;

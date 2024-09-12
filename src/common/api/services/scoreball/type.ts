@@ -7,4 +7,5 @@ interface IСandidates {
    experience: number;
 }
 
-export default IСandidates;
+
+export type { IСandidates };

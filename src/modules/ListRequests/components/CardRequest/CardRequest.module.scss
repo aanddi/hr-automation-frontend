@@ -1,0 +1,36 @@
+@import '/src/styles/variables.scss';
+
+.card {
+  background-color: $blue-light;
+  border-radius: 10px;
+
+  .wrapper {
+    padding: 16px 24px;
+    position: relative;
+  }
+
+  .footer {
+    margin-top: 32px;
+  }
+
+  .actions {
+    position: absolute;
+    top: 16px;
+    right: 24px;
+    color: red;
+
+    .actionsItem {
+      border-radius: 20px;
+      background-color: transparent !important;
+      color: red;
+      border-color: transparent;
+      box-shadow: none !important;
+
+      &:hover {
+        cursor: pointer;
+        color: inherit;
+        border-color: red;
+      }
+    }
+  }
+}

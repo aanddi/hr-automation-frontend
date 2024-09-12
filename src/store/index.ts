@@ -14,19 +14,19 @@ import {
    persistReducer,
    persistStore,
 } from "redux-persist";
-import resumes from "./slices/resumes.slice";
+import request from "./slices/request.slice";
 import historys from "./slices/historys.slice";
 import storage from "redux-persist/lib/storage";
 
 const rootReducer = combineReducers({
-   resumes,
+   request,
    historys,
 });
 
 const persistConfig = {
    key: "HRAi",
    storage,
-   blacklist: ["resumes"],
+   blacklist: ["request"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

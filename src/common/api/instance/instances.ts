@@ -1,8 +1,10 @@
 import axios from 'axios';
 
-export const instance = axios.create({
+const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_SERVER_API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
-})
+});
+
+export default axiosInstance;
