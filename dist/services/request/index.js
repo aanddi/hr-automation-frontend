@@ -50,7 +50,7 @@ export const RequestService = {
             newRequest.urlHh = urlHh;
             newRequest.prompt = prompt;
             const addedRequest = await requestsOrm.save(newRequest);
-            resumes.forEach(async (resume) => {
+            const saveResumePromises = resumes.map(async (resume) => {
                 const newResume = new Resumes();
                 newResume.idResumeHh = resume.id;
                 newResume.firstName = resume.firstName;
@@ -64,6 +64,7 @@ export const RequestService = {
                 newResume.request = newRequest;
                 await resumeOrm.save(newResume);
             });
+            await Promise.all(saveResumePromises);
             const idRequest = addedRequest.idRequest;
             return { idRequest: idRequest };
         }
