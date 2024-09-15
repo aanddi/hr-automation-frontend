@@ -36,6 +36,8 @@ const queryClient = new QueryClient({
       toast.remove();
       if (error instanceof AxiosError) {
         const axiosError = error.response?.data?.message;
+        console.log(error);
+        console.log(axiosError);
         notification.error({
           message: 'Ошибка',
           description: axiosError ?? desc,

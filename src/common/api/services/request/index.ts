@@ -9,7 +9,7 @@ export const RequestService = {
   },
 
   async getRequestById(id: number) {
-    const response = await axiosInstance.get<IRequest>(`/request/${id}`);
+    const response = await axiosInstance.get<IRequest>(`/request/byId/${id}`);
     return response.data;
   },
 

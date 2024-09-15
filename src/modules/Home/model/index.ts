@@ -26,18 +26,17 @@ const useCreateSearch = (getValues: UseFormGetValues<ISearchGpt>) => {
     },
     onSuccess(data: IResponseSearchGpt) {
       const prompt = getValues();
-
       const state = {
         urlHhRuApi: data.urlHHruApi,
         prompt: prompt.description,
         resumes: data.listCandidates.items,
       };
-
-      console.log(state)
-
       dispatch(setRequest(state));
       navigate('/candidates');
       dispatch(setHistory(prompt));
+    },
+    onError(error) {
+      console.log(`Ошибка при поиске: ${error}`);
     },
   });
 };

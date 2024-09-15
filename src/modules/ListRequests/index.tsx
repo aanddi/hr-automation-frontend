@@ -18,7 +18,7 @@ const ListRequests = () => {
         {data?.items.length === 0 && <Alert message="У вас нет запросов" type="info" />}
         <div className={styles.ribon}>
           {data?.items.map((card) => {
-            return <CardRequest key={card.idRequest} item={card} id={card.idRequest} />;
+            return <CardRequest key={card.id} item={card} id={card.id} />;
           })}
           {isLoading &&
             isFetching &&

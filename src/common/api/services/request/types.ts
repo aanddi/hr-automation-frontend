@@ -3,7 +3,7 @@ interface IListRequests {
 }
 
 interface IListRequestItem {
-  idRequest: number;
+  id: number;
   createdAt: string;
 }
 

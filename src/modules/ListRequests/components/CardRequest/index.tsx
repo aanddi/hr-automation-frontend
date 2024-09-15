@@ -13,7 +13,7 @@ const CardRequest = ({ item, id }: { item: IListRequestItem; id: number }) => {
   const { mutate: deleteRequest } = useDeleteRequest();
 
   const handleDeleteRequest = () => {
-    deleteRequest(item.idRequest);
+    deleteRequest(item.id);
   };
 
   return (
@@ -30,7 +30,7 @@ const CardRequest = ({ item, id }: { item: IListRequestItem; id: number }) => {
           </Descriptions>
         </div>
         <div className={styles.footer}>
-          <Button type="primary" href={`/request/${item.idRequest}`}>
+          <Button type="primary" href={`/request/${item.id}`}>
             Подробнее
           </Button>
         </div>
