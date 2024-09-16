@@ -21,7 +21,7 @@ const Request = () => {
     {
       key: '1',
       label: 'Резюме',
-      children: <Resumes resumes={requestData?.resumes} />,
+      children: <Resumes resumes={requestData?.resumes || []} idRequest={requestData?.idRequest} />,
     },
     {
       key: '2',

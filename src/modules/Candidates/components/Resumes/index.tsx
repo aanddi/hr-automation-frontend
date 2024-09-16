@@ -1,5 +1,3 @@
-import toast from 'react-hot-toast';
-
 import { IСandidates } from '@common/api/services/scoreball/type';
 import { generateExel, setFio } from '@common/utils';
 
@@ -29,13 +27,11 @@ const Resumes = ({ data }: { data: IRequestStore }) => {
   }));
 
   const handleAnalyzeResumes = () => {
-    console.log(data)
     createAnalyze(data);
   };
 
   const handleDownloadExcel = () => {
-    generateExel<IСandidates>(candidates);
-    toast.success('Таблица скачена');
+    generateExel<IСandidates>(candidates, 'Кандидаты');
   };
 
   return (

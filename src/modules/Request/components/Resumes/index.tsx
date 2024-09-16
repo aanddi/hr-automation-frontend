@@ -1,5 +1,3 @@
-import toast from 'react-hot-toast';
-
 import { IResumeRequest } from '@common/api/services/request/types';
 import { generateExel } from '@common/utils';
 
@@ -10,10 +8,14 @@ import { ArrowDownToLine } from 'lucide-react';
 import styles from './Resumes.module.scss';
 import ResumeTable from './componsnts/Table';
 
-const Resumes = ({ resumes }: { resumes?: IResumeRequest[] }) => {
+interface IResumes {
+  resumes: IResumeRequest[];
+  idRequest?: number;
+}
+
+const Resumes = ({ resumes, idRequest }: IResumes) => {
   const handleDownloadExcel = () => {
-    generateExel<IResumeRequest>(resumes, 'Резюме');
-    toast.success('Таблица скачена');
+    generateExel<IResumeRequest>(resumes, `Запрос № ${idRequest}. Резюме`);
   };
 
   return (
