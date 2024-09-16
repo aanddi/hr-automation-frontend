@@ -3,33 +3,6 @@
   background-color: #fff;
   padding-bottom: 50px;
 
-  .header {
-    border-bottom: 1px solid #dedddd;
-    height: 72px;
-    display: flex;
-    align-items: center;
-
-    margin-bottom: 24px;
-
-    .content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      .menu {
-        display: flex;
-        gap: 16px;
-
-        .logout {
-          &:hover {
-            color: red;
-            border-color: red;
-          }
-        }
-      }
-    }
-  }
-
   .floatButton {
     display: flex;
   }

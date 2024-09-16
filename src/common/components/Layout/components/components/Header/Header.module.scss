@@ -1,0 +1,38 @@
+.header {
+  border-bottom: 1px solid #edecec;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+
+    p {
+      font-size: 20px;
+      color: #232323;
+      font-weight: 700;
+    }
+  }
+
+  .menu {
+    display: flex;
+
+    .navElem {
+      color: #232323;
+      font-size: 15px;
+    }
+  }
+
+  .action {
+    .logout {
+      &:hover {
+        color: red;
+        border-color: red;
+      }
+    }
+  }
+}
