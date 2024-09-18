@@ -7,4 +7,27 @@ const axiosInstance = axios.create({
   },
 });
 
-export default axiosInstance;
+const axiosHhruInstance = axios.create({
+  baseURL: 'https://api.hh.ru',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+axiosHhruInstance.interceptors.request.use(
+  (config) => {
+    const accessToken = import.meta.env.VITE_ACCESS_TOKEN_HH;
+
+    if (accessToken) {
+      config.headers.set('Authorization', `Bearer ${accessToken}`);
+    }
+
+    return config;
+  },
+  (error) => {
+    Promise.reject(error);
+  },
+);
+
+
+export { axiosInstance, axiosHhruInstance };

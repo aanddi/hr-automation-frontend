@@ -6,9 +6,8 @@ import AuthProvider from '@common/providers/AuthProvider';
 
 import { Spin } from 'antd';
 
-const AuthPage = lazy(() => import('./Auth'));
 const HomePage = lazy(() => import('./Home'));
-const СandidatesPage = lazy(() => import('./Сandidates'));
+const AuthPage = lazy(() => import('./Auth'));
 const ListRequestsPage = lazy(() => import('./ListRequests'));
 const RequestPage = lazy(() => import('./Request'));
 
@@ -35,14 +34,6 @@ const Router = () => {
     {
       path: '/auth',
       element: <AuthPage />,
-    },
-    {
-      path: '/candidates',
-      element: (
-        <AuthProvider>
-          <СandidatesPage />
-        </AuthProvider>
-      ),
     },
     {
       path: '/requests',

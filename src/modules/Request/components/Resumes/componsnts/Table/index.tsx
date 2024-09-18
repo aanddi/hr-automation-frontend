@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 
 import { IResumeRequest } from '@common/api/services/request/types';
-import { setFio } from '@common/utils';
 
 import { Empty, Table, Tag } from 'antd';
 import { ColumnsType } from 'antd/es/table';
@@ -12,7 +11,6 @@ interface CandidatesTableProps {
 
 interface IResumesTable {
   idRequest: number;
-  fullname: string;
   age: number;
   title: string;
   linkResume: string;
@@ -25,7 +23,6 @@ const ResumeTable = ({ data }: CandidatesTableProps) => {
     data?.map((elem, index) => {
       return {
         idRequest: index + 1,
-        fullname: setFio(elem.firstName, elem.lastName, elem.middleName),
         age: elem.age,
         title: elem.title,
         totalExperience: elem.totalExperience,
@@ -40,13 +37,6 @@ const ResumeTable = ({ data }: CandidatesTableProps) => {
       dataIndex: 'idRequest',
       key: 'idRequest',
       align: 'center',
-    },
-    {
-      title: 'ФИО',
-      dataIndex: 'fullname',
-      key: 'fullname',
-      align: 'center',
-      width: '220px',
     },
     {
       title: 'Должность',

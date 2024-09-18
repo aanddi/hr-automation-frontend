@@ -1,4 +1,9 @@
 .list {
+  .header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
   .skeleton {
     margin-top: 16px;
   }

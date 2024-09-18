@@ -1,9 +1,9 @@
 import { axiosInstance } from '@common/api/instance';
 
-import { IRequestStore } from '@store/slices/request.slice';
+// import { IDataResumes } from '../hh/types';
 
 export const ScoreballService = {
-  async createScoreball(data: IRequestStore) {
-    return await axiosInstance.post<Promise<{ idRequest: number }>>('/scoreball', data);
+  async createScoreball(body: any) {
+    return await axiosInstance.post<Promise<{ idRequest: number }>>('/scoreball', body);
   },
 };

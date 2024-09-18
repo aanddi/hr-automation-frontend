@@ -34,7 +34,17 @@ const Request = () => {
     <div className={styles.list}>
       <div className={styles.header}>
         <Breadcrumb items={itemsBreadcrumb} />
-        <Title title={`Запрос № ${requestData?.idRequest ?? ''}`} />
+        {isFetching || isLoading ? (
+          <Skeleton.Input active />
+        ) : (
+          <Title
+            title={
+              requestData?.info.title
+                ? `${requestData?.info.title}`
+                : `Запрос № ${requestData?.idRequest}`
+            }
+          />
+        )}
       </div>
       {isFetching &&
         isLoading &&

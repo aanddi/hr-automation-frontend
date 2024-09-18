@@ -1,1 +1,2 @@
-export { default as axiosInstance } from './instances';
+export { axiosInstance } from './instances';
+export { axiosHhruInstance } from './instances';

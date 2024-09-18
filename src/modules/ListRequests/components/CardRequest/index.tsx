@@ -20,7 +20,7 @@ const CardRequest = ({ item, id }: { item: IListRequestItem; id: number }) => {
     <div className={styles.card}>
       <div className={styles.wrapper}>
         <Typography.Title level={4} className={styles.title}>
-          Запрос №{id}
+          {item.title ? `${item.title}` : `Запрос №${id}`}
         </Typography.Title>
         <div className={styles.info}>
           <Descriptions>

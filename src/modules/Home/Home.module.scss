@@ -1,37 +1,11 @@
-@import '/src/styles/variables.scss';
-
 .home {
-  margin: 32px 0;
-
-  .search {
-    .header {
-      margin-bottom: 34px;
-
-      .title {
-        text-align: center;
-      }
-    }
-
-    .content {
-      display: flex;
-      gap: 16px;
-
-      .button {
-        width: 180px;
-        height: 41px;
-        align-self: flex-end;
-      }
-
-      .textarea {
-        background-color: $blue-light;
-
-        &.error {
-          background-color: #fff2f0;
-          &::placeholder {
-            color: red;
-          }
-        }
-      }
-    }
+  .content {
+    margin-top: 24px;
+  }
+  .buttonSubmit {
+    width: 200px;
+  }
+  .buttonFilter {
+    width: 100px;
   }
 }

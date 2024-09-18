@@ -1,5 +1,5 @@
-import { Home } from "../../modules";
+import { Home } from "@modules/index";
 
-const HomePage = () => <Home />
+const HomePage = () => <Home />;
 
-export default HomePage
+export default HomePage;

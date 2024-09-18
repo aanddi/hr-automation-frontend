@@ -1,0 +1,11 @@
+export { default as Text } from './Text';
+export { default as AgeAndPhoto } from './AgeAndPhoto';
+export { default as Salary } from './Salary';
+export { default as Gender } from './Gender';
+export { default as Education } from './Education';
+export { default as Experience } from './Experience';
+export { default as Schedule } from './Schedule';
+export { default as Employment } from './Employment';
+export { default as ShowOnPage } from './ShowOnPage';
+export { default as Sorting } from './Sorting';
+export { default as StatusesEmployer } from './StatusesEmployer';

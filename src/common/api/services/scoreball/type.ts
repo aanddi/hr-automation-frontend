@@ -1,11 +1,15 @@
+import { IDataResumes } from '@common/api/services/hh/types';
+import { ICreacteAnalyze } from '@modules/Home/components/modal/AnalyzeModal';
+
 interface IСandidates {
    id: number;
-   fullname: string;
+   salary: string;
    age: number;
    profession: string;
    linkResume: string;
    experience: number;
 }
 
+type ICreateScoreball = ICreacteAnalyze & IDataResumes
 
-export type { IСandidates };
+export type { IСandidates, ICreateScoreball };

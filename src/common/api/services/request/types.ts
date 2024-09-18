@@ -5,6 +5,7 @@ interface IListRequests {
 interface IListRequestItem {
   id: number;
   createdAt: string;
+  title: string;
 }
 
 interface IRequest {
@@ -14,9 +15,8 @@ interface IRequest {
 }
 
 interface IInfoRequest {
-  urlHh: string;
   createdAt: string;
-  prompt: string;
+  title: string;
 }
 
 interface IResumeRequest {

@@ -1,44 +1,41 @@
-import { useMutation } from '@tanstack/react-query';
-import { UseFormGetValues } from 'react-hook-form';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
 
-import { SearchService } from '@common/api/services/search';
-import { IResponseSearchGpt, ISearchGpt } from '@common/api/services/search/types';
-import { useAppDispatch } from '@common/hooks';
+import { HhruService } from '@common/api/services/hh';
+import { ScoreballService } from '@common/api/services/scoreball';
+import { ICreateScoreball } from '@common/api/services/scoreball/type';
 
-import { setHistory } from '@store/slices/historys.slice';
-import { setRequest } from '@store/slices/request.slice';
+const useResumes = (params: string) => {
 
-const useCreateSearch = (getValues: UseFormGetValues<ISearchGpt>) => {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  return useQuery({
+    queryKey: ['GET-RESUMES', params],
+    queryFn: async () => {
+      return HhruService.getResumes(params.toString());
+    },
+    retry: 2,
+    refetchOnMount: false,
+    refetchInterval: false,
+    refetchOnWindowFocus: false,
+  });
+};
 
+const useAnalyzeResumes = () => {
   return useMutation({
-    mutationFn: async (data: ISearchGpt) => {
-      const response = await toast.promise(SearchService.getSearch(data), {
-        loading: 'Поиск резюме...',
-        success: 'Резюме найдены',
-        error: 'Ошибка. Резюме не найдены',
+    mutationFn: async (data: ICreateScoreball) => {
+      const body = { resumes: data.items, title: data.title };
+      const response = await toast.promise(ScoreballService.createScoreball(body), {
+        loading: 'Анализ списка резюме...',
+        success: 'Анализ успешно проведен и сохранен',
+        error: 'Ошибка. Анализ провалился',
       });
 
       return response.data;
     },
-    onSuccess(data: IResponseSearchGpt) {
-      const prompt = getValues();
-      const state = {
-        urlHhRuApi: data.urlHHruApi,
-        prompt: prompt.description,
-        resumes: data.listCandidates.items,
-      };
-      dispatch(setRequest(state));
-      navigate('/candidates');
-      dispatch(setHistory(prompt));
-    },
-    onError(error) {
-      console.log(`Ошибка при поиске: ${error}`);
+    onError(err: any) {
+      console.error('Ошибка при выполнении метода => useAnalyzeResumes', err);
+      return err.response?.data?.message;
     },
   });
 };
 
-export default useCreateSearch;
+export { useResumes, useAnalyzeResumes };

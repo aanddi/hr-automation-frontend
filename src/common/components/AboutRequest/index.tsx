@@ -10,8 +10,8 @@ const AboutRequest = ({ data }: { data?: IInfoRequest }) => {
     <div className={styles.info}>
       <Descriptions column={1} bordered labelStyle={{ width: '250px' }}>
         <Descriptions.Item label="Дата создания">{formatDate(data?.createdAt)}</Descriptions.Item>
-        <Descriptions.Item label="Сгенерированная ссылка">{data?.urlHh || '-'}</Descriptions.Item>
-        <Descriptions.Item label="Промпт">{data?.prompt || '-'}</Descriptions.Item>
+        <Descriptions.Item label="Название">{data?.title || '-'}</Descriptions.Item>
+       
       </Descriptions>
     </div>
   );

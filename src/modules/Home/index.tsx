@@ -1,72 +1,58 @@
-import { Controller, useForm } from 'react-hook-form';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import { Title } from '@components';
 
-import { ISearchGpt } from '@common/api/services/search/types';
+import { formatPrice } from '@common/utils/formatted/Number';
 
-import { Button, Input } from 'antd';
+import { Button, Flex, Input, Skeleton } from 'antd';
 
-import { Search } from 'lucide-react';
+import { Settings2 } from 'lucide-react';
 
-import History from './components/History';
+import Filters from './components/Filters';
+import RibbonResumes from './components/RibbonResumes';
 
 import styles from './Home.module.scss';
-import useCreateSearch from './model';
+import { useResumes } from './model';
 
 const Home = () => {
-  const {
-    control,
-    handleSubmit,
-    getValues,
-    setValue,
-    formState: { errors },
-  } = useForm<ISearchGpt>({
-    mode: 'onSubmit',
-  });
+  const [params] = useSearchParams();
 
-  const { mutate: createRequestGpt, isPending } = useCreateSearch(getValues);
+  const { data, isFetching, isLoading, refetch } = useResumes(params.toString());
 
-  const handleSearch = async (data: ISearchGpt) => {
-    createRequestGpt(data);
-  };
+  useEffect(() => {
+    refetch();
+  }, [params, refetch]);
+
+  const [openFilters, setOpenFilters] = useState<boolean>(false);
+
+  const loadingResumes = isFetching || isLoading;
 
   return (
     <div className={styles.home}>
-      <form onSubmit={handleSubmit(handleSearch)} className={styles.search}>
-        <div className={styles.header}>
-          <Title title=" Поиск кандидатов" level={2} className={styles.title} />
-        </div>
-        <div className={styles.content}>
-          <Controller
-            name="description"
-            control={control}
-            rules={{ required: 'Укажите описание' }}
-            render={({ field }) => (
-              <Input.TextArea
-                size="large"
-                placeholder="Опишите требования к кандидату..."
-                className={`
-                           ${styles.textarea} 
-                           ${errors.description && styles.error}`}
-                autoSize={{ minRows: 1, maxRows: 10 }}
-                status={errors.description && 'error'}
-                {...field}
-              />
-            )}
-          />
-          <Button
-            type="primary"
-            size="large"
-            className={styles.button}
-            htmlType="submit"
-            loading={isPending}
-            icon={<Search size={18} />}
-          >
-            Найти
-          </Button>
-        </div>
-      </form>
-      <History setValue={setValue} />
+      <Title title="Поиск резюме" />
+      <Flex gap={16}>
+        <Input placeholder="Поиск" size="large" />
+        <Button
+          type="default"
+          size="large"
+          icon={<Settings2 size={20} />}
+          onClick={() => setOpenFilters(true)}
+          className={styles.buttonFilter}
+        />
+        <Button type="primary" size="large" className={styles.buttonSubmit}>
+          Найти
+        </Button>
+        <Filters openFilter={openFilters} setOpenFilter={setOpenFilters} />
+      </Flex>
+      <div className={styles.content}>
+        {loadingResumes ? (
+          <Skeleton.Input active />
+        ) : (
+          <Title level={4} title={`Найдено ${formatPrice(data?.found)} резюме `} />
+        )}
+        <RibbonResumes data={data} loading={loadingResumes} />
+      </div>
     </div>
   );
 };
