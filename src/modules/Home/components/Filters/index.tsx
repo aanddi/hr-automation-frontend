@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -25,56 +25,75 @@ interface IFilters {
   setOpenFilter: (state: boolean) => void;
 }
 
+interface IFilter {
+  salary_from: string;
+  salary_to: string;
+  age_from: string;
+  age_to: string;
+  text: string;
+  logic: string;
+  order_by: string;
+  gender: string;
+  currency_code: string;
+  label_only_with_age: boolean;
+  label_only_with_photo: boolean;
+  label_only_with_salary: boolean;
+  education_level: string;
+  employment: string[];
+  experience: string[];
+  schedule: string[];
+  job_search_status: string[];
+  per_page: number;
+}
+
 const Filters = ({ openFilter, setOpenFilter }: IFilters) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const getQueryParams = useCallback(() => {
-    const params = Object.fromEntries(new URLSearchParams(location.search));
-
-    if (params.toString().length > 0) {
-      const transformedParams: any = {};
-
-      const experiences = new URLSearchParams(location.search).getAll('experience');
-      const employments = new URLSearchParams(location.search).getAll('employment');
-      const schedules = new URLSearchParams(location.search).getAll('schedule');
-
-      transformedParams['experience'] = [...experiences];
-      transformedParams['employment'] = [...employments];
-      transformedParams['schedule'] = [...schedules];
-
-      for (const key in params) {
-        if (key === 'label') {
-          const labels = new URLSearchParams(location.search).getAll('label');
-          labels.forEach((label) => {
-            transformedParams[`label_${label}`] = true;
-          });
-        }
-
-        if (key === 'experience' || key === 'employment' || key === 'schedule') continue;
-
-        transformedParams[key] = params[key];
-      }
-
-      console.log(transformedParams)
-      return transformedParams;
-    }
-
-    return {};
-  }, [location.search]);
-
-  const defaultdsf = getQueryParams();
-
-  const methods = useForm({
+  const methods = useForm<IFilter>({
     defaultValues: {
+      salary_from: '',
+      salary_to: '',
+      age_from: '',
+      age_to: '',
+      text: '',
       logic: 'all',
       order_by: 'relevance',
       gender: 'unknown',
-      ...defaultdsf,
+      currency_code: 'RUR',
+      label_only_with_age: false,
+      label_only_with_photo: false,
+      label_only_with_salary: false,
+      education_level: '',
+      employment: [],
+      experience: [],
+      schedule: [],
+      job_search_status: [],
+      per_page: 5,
     },
   });
 
-  console.log(methods.getValues());
+  useEffect(() => {
+    const params = Object.fromEntries(new URLSearchParams(location.search));
+
+    const keysToSetAsArrays = ['experience', 'employment', 'schedule', 'job_search_status'];
+
+    keysToSetAsArrays.forEach((key) => {
+      methods.setValue(key as keyof IFilter, new URLSearchParams(location.search).getAll(key));
+    });
+
+    for (const key in params) {
+      if (keysToSetAsArrays.includes(key)) continue;
+      if (key === 'label') {
+        const labels = new URLSearchParams(location.search).getAll('label');
+        labels.forEach((label) => {
+          methods.setValue(`label_${label}` as keyof IFilter, true);
+        });
+      }
+
+      methods.setValue(key as keyof IFilter, params[key]);
+    }
+  }, [location, methods]);
 
   const handleSearch = async (data: any) => {
     const newUrlParams = new URLSearchParams();
@@ -85,15 +104,14 @@ const Filters = ({ openFilter, setOpenFilter }: IFilters) => {
       }
 
       if (Array.isArray(data[key])) {
-        const array: string[] = data[key];
-        array.map((level) => {
+        data[key].map((level) => {
           return newUrlParams.append(key, level);
         });
       }
 
       if (key.startsWith('label_') && data[key]) {
-        const substring = key.slice(6);
-        newUrlParams.append('label', substring);
+        const substringLabel = key.slice(6);
+        newUrlParams.append('label', substringLabel);
       }
     }
 
@@ -106,19 +124,19 @@ const Filters = ({ openFilter, setOpenFilter }: IFilters) => {
   };
 
   const handleResetParams = () => {
+    setOpenFilter(false);
+    methods.reset();
     navigate({
       pathname: location.pathname,
       search: new URLSearchParams().toString(),
     });
-    methods.reset();
-    setOpenFilter(false);
   };
 
   return (
     <Drawer
       closable
       destroyOnClose
-      title={<p>Фильтры</p>}
+      title="Фильтры"
       placement="right"
       open={openFilter}
       width={800}

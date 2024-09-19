@@ -15,12 +15,16 @@ const AgeAndPhoto = () => {
             <Controller
               name="age_from"
               control={control}
-              render={({ field }) => <InputNumber placeholder="от" size="large" {...field} />}
+              render={({ field }) => (
+                <InputNumber placeholder="от" size="large" min={0} max={100} {...field} />
+              )}
             />
             <Controller
               name="age_to"
               control={control}
-              render={({ field }) => <InputNumber placeholder="до" size="large" {...field} />}
+              render={({ field }) => (
+                <InputNumber placeholder="до" size="large" min={0} max={100} {...field} />
+              )}
             />
           </Flex>
           <Controller

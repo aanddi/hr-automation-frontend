@@ -1,12 +1,12 @@
 import { Controller, useFormContext } from 'react-hook-form';
 
-import { Flex, Radio } from 'antd';
+import { Button, Flex, Radio } from 'antd';
 
 import { educationLevel } from '../../constans';
 import styles from '../Components.module.scss';
 
 const Education = () => {
-  const { control } = useFormContext();
+  const { control, resetField } = useFormContext();
   return (
     <form>
       <Flex gap={20}>
@@ -25,6 +25,14 @@ const Education = () => {
                       </Radio>
                     );
                   })}
+                  <Button
+                    onClick={() => resetField('education_level')}
+                    type="link"
+                    size="small"
+                    style={{ width: 'max-content', padding: '0' }}
+                  >
+                    Очистить
+                  </Button>
                 </Flex>
               </Radio.Group>
             )}

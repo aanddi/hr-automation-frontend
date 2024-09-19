@@ -4,7 +4,7 @@ const formatPrice = (price?: number) => {
 };
 
 const parserNumber = (value?: string) => {
-  if (!value) return 0;
+  if (!value) return undefined;
 
   return parseInt(value.replace(/\s?|(,*)/g, ''), 10);
 };

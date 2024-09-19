@@ -20,7 +20,7 @@ const Schedule = () => {
                 <Flex vertical gap={8}>
                   {schedule.map((level) => {
                     return (
-                      <Checkbox key={level.id} value={level.id}>
+                      <Checkbox checked={field.value} key={level.id} value={level.id}>
                         {level.name}
                       </Checkbox>
                     );

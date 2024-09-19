@@ -1,5 +1,7 @@
 import { Controller, useFormContext } from 'react-hook-form';
 
+import { formatPrice, parserNumber } from '@common/utils/formatted/Number';
+
 import { Checkbox, Flex, InputNumber, Select } from 'antd';
 
 import { salary } from '../../constans';
@@ -17,14 +19,30 @@ const Salary = () => {
               name="salary_from"
               control={control}
               render={({ field }) => (
-                <InputNumber style={{ width: '100%' }} placeholder="от" size="large" {...field} />
+                <InputNumber
+                  min={0}
+                  formatter={(valueInput) => formatPrice(valueInput as number)}
+                  parser={(valueInput) => parserNumber(valueInput) as unknown as string}
+                  placeholder="от"
+                  size="large"
+                  className={styles.inputNumber}
+                  {...field}
+                />
               )}
             />
             <Controller
               name="salary_to"
               control={control}
               render={({ field }) => (
-                <InputNumber style={{ width: '100%' }} placeholder="до" size="large" {...field} />
+                <InputNumber
+                  min={0}
+                  formatter={(value) => formatPrice(value as number)}
+                  parser={(value) => parserNumber(value) as unknown as string}
+                  placeholder="до"
+                  size="large"
+                  className={styles.inputNumber}
+                  {...field}
+                />
               )}
             />
             <Controller

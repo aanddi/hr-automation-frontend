@@ -4,7 +4,7 @@ export const HhruService = {
   async getResumes(params: any) {
     const response = await axiosHhruInstance.get(`/resumes?${params}`, {
       params: {
-        per_page: 5,
+        per_page: 1,
       },
     });
     return response.data;

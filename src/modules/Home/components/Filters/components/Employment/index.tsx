@@ -20,7 +20,7 @@ const Employment = () => {
                 <Flex vertical gap={8}>
                   {employment.map((item) => {
                     return (
-                      <Checkbox key={item.id} value={item.id}>
+                      <Checkbox checked={field.value} key={item.id} value={item.id}>
                         {item.name}
                       </Checkbox>
                     );
