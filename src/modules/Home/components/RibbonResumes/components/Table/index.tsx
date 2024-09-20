@@ -78,7 +78,7 @@ const ResumesTable = ({ data, loading, totalPages }: ITable) => {
       dataIndex: 'linkResume',
       key: 'linkResume',
       align: 'center',
-      render: (link: string) => <Link to={link}>Ссылка</Link>,
+      render: (link: string) => <Link target="_blank" to={link}>Ссылка</Link>,
     },
   ];
 

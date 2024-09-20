@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import { IResumeRequest } from '@common/api/services/request/types';
+import setFio from '@common/utils/formatted/setFio';
 
 import { Empty, Table, Tag } from 'antd';
 import { ColumnsType } from 'antd/es/table';
@@ -11,11 +12,13 @@ interface CandidatesTableProps {
 
 interface IResumesTable {
   idRequest: number;
+  fullname: string;
   age: number;
   title: string;
   linkResume: string;
   totalExperience: number;
   scoreball: number;
+  comment: string;
 }
 
 const ResumeTable = ({ data }: CandidatesTableProps) => {
@@ -23,11 +26,13 @@ const ResumeTable = ({ data }: CandidatesTableProps) => {
     data?.map((elem, index) => {
       return {
         idRequest: index + 1,
+        fullname: setFio(elem.firstName, elem.lastName, elem.middleName),
         age: elem.age,
         title: elem.title,
         totalExperience: elem.totalExperience,
         linkResume: elem.urlResume,
         scoreball: elem.scoreball,
+        comment: elem.comment,
       };
     }) || [];
 
@@ -39,11 +44,18 @@ const ResumeTable = ({ data }: CandidatesTableProps) => {
       align: 'center',
     },
     {
+      title: 'ФИО',
+      dataIndex: 'fullname',
+      key: 'fullname',
+      align: 'center',
+      width: '150px',
+    },
+    {
       title: 'Должность',
       dataIndex: 'title',
       key: 'title',
       align: 'center',
-      width: '300px',
+      width: '200px',
     },
     {
       title: 'Резюме',
@@ -66,6 +78,7 @@ const ResumeTable = ({ data }: CandidatesTableProps) => {
       dataIndex: 'totalExperience',
       key: 'totalExperience',
       align: 'center',
+      width: '200px',
       sorter: (a: IResumesTable, b: IResumesTable) => a.totalExperience - b.totalExperience,
       render: (experience: number) => (experience ? experience : '-'),
     },
@@ -77,6 +90,13 @@ const ResumeTable = ({ data }: CandidatesTableProps) => {
       align: 'center',
       render: (scrollball: number) => <Tag color="geekblue">{scrollball}</Tag>,
       sorter: (a: IResumesTable, b: IResumesTable) => a.scoreball - b.scoreball,
+    },
+    {
+      title: 'Комментарий',
+      dataIndex: 'comment',
+      key: 'comment',
+      align: 'center',
+      width: '300px',
     },
   ];
 

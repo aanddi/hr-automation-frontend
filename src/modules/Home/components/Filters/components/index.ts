@@ -9,3 +9,8 @@ export { default as Employment } from './Employment';
 export { default as ShowOnPage } from './ShowOnPage';
 export { default as Sorting } from './Sorting';
 export { default as StatusesEmployer } from './StatusesEmployer';
+export { default as Region } from './Region';
+export { default as ExperienceIndustry } from './ExperienceIndustry';
+export { default as Automobile } from './Automobile';
+export { default as CategoryRights } from './CategoryRights';
+export { default as ProfessionalRoles } from './ProfessionalRoles';

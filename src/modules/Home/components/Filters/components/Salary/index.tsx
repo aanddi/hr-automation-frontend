@@ -11,7 +11,7 @@ const Salary = () => {
   const { control } = useFormContext();
   return (
     <form>
-      <Flex gap={20} align="center">
+      <Flex gap={20}>
         <div className={styles.label}>Зарплата:</div>
         <Flex vertical style={{ width: '100%' }} gap={8}>
           <Flex gap={16}>

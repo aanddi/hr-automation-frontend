@@ -35,7 +35,7 @@ const RibbonResumes = ({ data, loading }: IRibbon) => {
       : '-',
     profession: candidate.title,
     experience: candidate.total_experience?.months,
-    linkResume: candidate.url,
+    linkResume: candidate.alternate_url,
   }));
 
   const handleAnalyzeResumes = () => {

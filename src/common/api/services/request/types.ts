@@ -29,6 +29,7 @@ interface IResumeRequest {
   urlResume: string;
   totalExperience: number;
   scoreball: number;
+  comment: string;
 }
 
 export type { IListRequests, IRequest, IInfoRequest, IResumeRequest, IListRequestItem };

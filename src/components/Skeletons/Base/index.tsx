@@ -6,6 +6,7 @@ interface ISkeleton extends SkeletonProps {
   className?: string;
   width?: string;
   height?: string;
+  borderRadius?: string;
 }
 
 const Skeleton = ({
@@ -14,13 +15,14 @@ const Skeleton = ({
   height = '200px',
   active = true,
   paragraph = false,
+  borderRadius = "5px",
   ...restProps
 }: ISkeleton) => {
   return (
     <UISkeleton
       active={active}
       className={`skeleton ${className}`}
-      style={{ width, height }}
+      style={{ width, height, borderRadius }}
       paragraph={paragraph}
       {...restProps}
     />

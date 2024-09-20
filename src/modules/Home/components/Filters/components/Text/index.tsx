@@ -9,7 +9,7 @@ const Text = () => {
   const { control } = useFormContext();
   return (
     <form>
-      <Flex gap={20} align="center">
+      <Flex gap={20}>
         <div className={styles.label}>Ключевые слова:</div>
         <Flex vertical style={{ width: '100%' }} gap={8}>
           <Flex>
@@ -36,19 +36,6 @@ const Text = () => {
               />
             )}
           />
-          {/* <Controller
-            name="logic"
-            control={control}
-            render={({ field }) => (
-              <Select
-                options={resumeSearchLogic}
-                defaultValue={'all'}
-                style={{ width: '30%' }}
-                variant="borderless"
-                {...field}
-              />
-            )}
-          /> */}
         </Flex>
       </Flex>
     </form>

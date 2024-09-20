@@ -6,10 +6,14 @@ import { Button, Drawer, Flex } from 'antd';
 
 import {
   AgeAndPhoto,
+  Automobile,
+  CategoryRights,
   Education,
   Employment,
   Experience,
+  ExperienceIndustry,
   Gender,
+  Region,
   Salary,
   Schedule,
   ShowOnPage,
@@ -19,38 +23,18 @@ import {
 } from './components';
 
 import styles from './Filters.module.scss';
+import { IFilterParams } from './types';
 
 interface IFilters {
   openFilter: boolean;
   setOpenFilter: (state: boolean) => void;
 }
 
-interface IFilter {
-  salary_from: string;
-  salary_to: string;
-  age_from: string;
-  age_to: string;
-  text: string;
-  logic: string;
-  order_by: string;
-  gender: string;
-  currency_code: string;
-  label_only_with_age: boolean;
-  label_only_with_photo: boolean;
-  label_only_with_salary: boolean;
-  education_level: string;
-  employment: string[];
-  experience: string[];
-  schedule: string[];
-  job_search_status: string[];
-  per_page: number;
-}
-
 const Filters = ({ openFilter, setOpenFilter }: IFilters) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const methods = useForm<IFilter>({
+  const methods = useForm<IFilterParams>({
     defaultValues: {
       salary_from: '',
       salary_to: '',
@@ -64,22 +48,41 @@ const Filters = ({ openFilter, setOpenFilter }: IFilters) => {
       label_only_with_age: false,
       label_only_with_photo: false,
       label_only_with_salary: false,
+      label_only_with_vehicle: false,
       education_level: '',
       employment: [],
       experience: [],
       schedule: [],
       job_search_status: [],
+      area: [],
+      filter_exp_industry: [],
+      driver_license_types: [],
       per_page: 5,
+      relocation: 'living_or_relocation',
+      filter_exp_period: 'all_time',
+      // professional_role: [],
     },
   });
 
   useEffect(() => {
     const params = Object.fromEntries(new URLSearchParams(location.search));
 
-    const keysToSetAsArrays = ['experience', 'employment', 'schedule', 'job_search_status'];
+    const keysToSetAsArrays = [
+      'experience',
+      'employment',
+      'schedule',
+      'job_search_status',
+      'area',
+      'filter_exp_industry',
+      'driver_license_types',
+      // 'professional_role',
+    ];
 
     keysToSetAsArrays.forEach((key) => {
-      methods.setValue(key as keyof IFilter, new URLSearchParams(location.search).getAll(key));
+      methods.setValue(
+        key as keyof IFilterParams,
+        new URLSearchParams(location.search).getAll(key),
+      );
     });
 
     for (const key in params) {
@@ -87,38 +90,40 @@ const Filters = ({ openFilter, setOpenFilter }: IFilters) => {
       if (key === 'label') {
         const labels = new URLSearchParams(location.search).getAll('label');
         labels.forEach((label) => {
-          methods.setValue(`label_${label}` as keyof IFilter, true);
+          methods.setValue(`label_${label}` as keyof IFilterParams, true);
         });
       }
 
-      methods.setValue(key as keyof IFilter, params[key]);
+      methods.setValue(key as keyof IFilterParams, params[key]);
     }
   }, [location, methods]);
 
   const handleSearch = async (data: any) => {
-    const newUrlParams = new URLSearchParams();
+    const newUrlQueryParams = new URLSearchParams();
 
     for (const key in data) {
       if (data[key] && !key.startsWith('label_') && !Array.isArray(data[key])) {
-        newUrlParams.set(key, data[key]);
+        newUrlQueryParams.set(key, data[key]);
       }
 
       if (Array.isArray(data[key])) {
         data[key].map((level) => {
-          return newUrlParams.append(key, level);
+          return newUrlQueryParams.append(key, level);
         });
       }
 
       if (key.startsWith('label_') && data[key]) {
         const substringLabel = key.slice(6);
-        newUrlParams.append('label', substringLabel);
+        newUrlQueryParams.append('label', substringLabel);
       }
     }
 
     navigate({
       pathname: location.pathname,
-      search: newUrlParams.toString(),
+      search: newUrlQueryParams.toString(),
     });
+
+    console.log(data);
 
     setOpenFilter(false);
   };
@@ -156,7 +161,10 @@ const Filters = ({ openFilter, setOpenFilter }: IFilters) => {
       <FormProvider {...methods}>
         <Flex vertical gap={32}>
           <Text />
+          <ExperienceIndustry />
+          <Region />
           <StatusesEmployer />
+          {/* <ProfessionalRoles /> */}
           <AgeAndPhoto />
           <Salary />
           <Gender />
@@ -164,6 +172,8 @@ const Filters = ({ openFilter, setOpenFilter }: IFilters) => {
           <Experience />
           <Schedule />
           <Employment />
+          <Automobile />
+          <CategoryRights />
           <Sorting />
           <ShowOnPage />
         </Flex>

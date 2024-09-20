@@ -4,6 +4,25 @@ export const salary = [
   { value: 'USD', label: '€' },
 ];
 
+export const searchRelocation = [
+  {
+    value: 'living_or_relocation',
+    label: 'Живут в указанном регионе или готовы переехать в него',
+  },
+  {
+    value: 'living',
+    label: 'Живут в указанном регионе',
+  },
+  {
+    value: 'living_but_relocation',
+    label: 'Живут в указанном регионе и готовы к переезду куда-либо',
+  },
+  {
+    value: 'relocation',
+    label: 'Не живут в указанном регионе, но готовы переехать в него',
+  },
+];
+
 export const genders = [
   {
     value: 'unknown',
@@ -201,5 +220,57 @@ export const statusesEmployer = [
   {
     id: 'accepted_job_offer',
     name: 'Вышел на новое место',
+  },
+];
+
+export const expPeriod = [
+  {
+    value: 'all_time',
+    label: 'за все время',
+  },
+  {
+    value: 'last_year',
+    label: 'за последний год',
+  },
+  {
+    value: 'last_three_years',
+    label: 'за последние 3 года',
+  },
+  {
+    value: 'last_six_years',
+    label: 'за последние 6 лет',
+  },
+];
+
+export const driverLicenseTypes = [
+  {
+    value: 'A',
+  },
+  {
+    value: 'B',
+  },
+  {
+    value: 'C',
+  },
+  {
+    value: 'D',
+  },
+  {
+    value: 'E',
+  },
+  {
+    value: 'BE',
+  },
+  {
+    value: 'CE',
+  },
+  {
+    value: 'DE',
+  },
+  {
+    value: 'TM',
+  },
+  {
+    value: 'TB',
   },
 ];
