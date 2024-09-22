@@ -36,13 +36,13 @@ const Region = () => {
                     style={{ width: '100%' }}
                     allowClear
                     treeCheckable
-                    treeCheckStrictly
+                    showCheckedStrategy={TreeSelect.SHOW_PARENT}
                     maxTagCount={3}
                     maxTagTextLength={25}
                     multiple
                     defaultValue={getValues('filter_exp_industry')}
                     onChange={(selectedValues) => {
-                      field.onChange(selectedValues.map((value: any) => value.value));
+                      field.onChange(selectedValues.map((value: any) => value));
                     }}
                     {...restField}
                   />

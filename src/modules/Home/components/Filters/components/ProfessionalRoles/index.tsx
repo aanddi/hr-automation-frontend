@@ -14,21 +14,6 @@ const ProfessionalRoles = () => {
 
   const { data: professionalRoles, isLoading, isFetching } = useProfessionalRoles();
 
-  // const renderTreeNodes = (professionalRoles) =>
-  //   professionalRoles.map((item) => {
-  //     if (item.children) {
-  //       item.disabled = true;
-  //       return (
-  //         <TreeNode title={item.title} value={item.value} disabled={item.disabled}>
-  //           {renderTreeNodes(item.children)}
-  //         </TreeNode>
-  //       );
-  //     }
-  //     return <TreeNode {...item} title={item.title} value={item.value} />;
-  //   });
-
-  console.log(getValues('professional_role'));
-
   return (
     <form>
       <Flex gap={20} align="center">
@@ -52,6 +37,9 @@ const ProfessionalRoles = () => {
                   allowClear
                   maxTagCount={8}
                   multiple
+                  showCheckedStrategy={TreeSelect.SHOW_CHILD}
+                  treeCheckable
+                  // treeCheckStrictly
                   defaultValue={getValues('professional_role')}
                   onChange={(selectedValues) => {
                     field.onChange(selectedValues.map((value: any) => value));

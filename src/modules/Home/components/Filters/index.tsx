@@ -13,6 +13,7 @@ import {
   Experience,
   ExperienceIndustry,
   Gender,
+  ProfessionalRoles,
   Region,
   Salary,
   Schedule,
@@ -60,7 +61,7 @@ const Filters = ({ openFilter, setOpenFilter }: IFilters) => {
       per_page: 5,
       relocation: 'living_or_relocation',
       filter_exp_period: 'all_time',
-      // professional_role: [],
+      professional_role: [],
     },
   });
 
@@ -75,7 +76,7 @@ const Filters = ({ openFilter, setOpenFilter }: IFilters) => {
       'area',
       'filter_exp_industry',
       'driver_license_types',
-      // 'professional_role',
+      'professional_role',
     ];
 
     keysToSetAsArrays.forEach((key) => {
@@ -123,8 +124,6 @@ const Filters = ({ openFilter, setOpenFilter }: IFilters) => {
       search: newUrlQueryParams.toString(),
     });
 
-    console.log(data);
-
     setOpenFilter(false);
   };
 
@@ -161,10 +160,10 @@ const Filters = ({ openFilter, setOpenFilter }: IFilters) => {
       <FormProvider {...methods}>
         <Flex vertical gap={32}>
           <Text />
+          <ProfessionalRoles />
           <ExperienceIndustry />
           <Region />
           <StatusesEmployer />
-          {/* <ProfessionalRoles /> */}
           <AgeAndPhoto />
           <Salary />
           <Gender />

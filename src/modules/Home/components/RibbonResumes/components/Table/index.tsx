@@ -12,10 +12,11 @@ import { ColumnsType } from 'antd/es/table';
 interface ITable {
   data: IСandidates[];
   totalPages: number;
+  perPage: number;
   loading: boolean;
 }
 
-const ResumesTable = ({ data, loading, totalPages }: ITable) => {
+const ResumesTable = ({ data, loading, totalPages, perPage }: ITable) => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const location = useLocation();
@@ -78,7 +79,11 @@ const ResumesTable = ({ data, loading, totalPages }: ITable) => {
       dataIndex: 'linkResume',
       key: 'linkResume',
       align: 'center',
-      render: (link: string) => <Link target="_blank" to={link}>Ссылка</Link>,
+      render: (link: string) => (
+        <Link target="_blank" to={link}>
+          Ссылка
+        </Link>
+      ),
     },
   ];
 
@@ -99,10 +104,13 @@ const ResumesTable = ({ data, loading, totalPages }: ITable) => {
           }}
         />
         <Pagination
+          current={currentPage}
           defaultCurrent={currentPage}
           total={totalPages}
           onChange={handlePageChange}
           showSizeChanger={false}
+          pageSize={perPage}
+          defaultPageSize={5}
         />
       </Flex>
     </SkeletonTable>

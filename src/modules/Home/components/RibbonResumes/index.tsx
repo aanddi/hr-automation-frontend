@@ -68,7 +68,7 @@ const RibbonResumes = ({ data, loading }: IRibbon) => {
           Скачать Excel
         </Button>
       </Flex>
-      <ResumesTable data={candidates} totalPages={data?.pages} loading={loading} />
+      <ResumesTable data={candidates} totalPages={data?.pages} perPage={data?.per_page} loading={loading} />
       <AnalyzeModal open={openModal} setOpen={setOpenModal} create={createAnalyze} resumes={data} />
     </div>
   );

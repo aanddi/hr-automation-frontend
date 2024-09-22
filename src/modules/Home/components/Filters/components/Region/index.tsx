@@ -14,8 +14,6 @@ const Region = () => {
 
   const { data: areas, isLoading, isFetching } = useAreas();
 
-  console.log(getValues())
-
   return (
     <form>
       <Flex gap={20}>
@@ -30,7 +28,7 @@ const Region = () => {
                 control={control}
                 render={({ field, ...restField }) => (
                   <TreeSelect
-                    // showCheckedStrategy={TreeSelect.SHOW_PARENT}
+                    showCheckedStrategy={TreeSelect.SHOW_PARENT}
                     placeholder="Регион"
                     treeNodeFilterProp={'title'}
                     treeData={areas}
@@ -39,12 +37,11 @@ const Region = () => {
                     style={{ width: '100%' }}
                     allowClear
                     treeCheckable
-                    treeCheckStrictly
-                    maxTagCount={8}
+                    maxTagCount={3}
                     multiple
                     defaultValue={getValues('area')}
                     onChange={(selectedValues) => {
-                      field.onChange(selectedValues.map((value: any) => value.value));
+                      field.onChange(selectedValues.map((value: any) => value));
                     }}
                     {...restField}
                   />

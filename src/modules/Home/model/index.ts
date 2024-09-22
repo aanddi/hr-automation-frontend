@@ -91,14 +91,17 @@ const useProfessionalRoles = () => {
 
       const flattenAreas = (roles: any): any => {
         const areasFormatted = [];
-        let count = 10000;
+        let count = 1;
         const uniqId: string[] = [];
 
         for (const role of roles) {
           const obj = {
-            value: count,
+            key: `key-${count}`,
+            value: `key-${count}`,
             title: role.name,
-            disabled: true,
+            // disabled: true,
+            // checkable: true,
+            disableCheckbox: false,
             children: [],
           };
 
