@@ -15,14 +15,13 @@ const formatExperience = (months?: number) => {
     } else {
       experienceString += 'лет';
     }
-    
+
     if (remainingMonths > 0) {
       experienceString += ` ${remainingMonths} `;
       experienceString += remainingMonths === 1 ? 'месяц' : 'месяца';
     }
-    
+
     return experienceString;
-    
   } else {
     experienceString += `${remainingMonths} `;
     experienceString += remainingMonths === 1 ? 'месяц' : 'месяца';

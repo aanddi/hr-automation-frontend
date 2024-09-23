@@ -1,4 +1,4 @@
-import { Request } from "@modules/index";
+import { Request } from '@modules/index';
 
 const RequestPage = () => <Request />;
 

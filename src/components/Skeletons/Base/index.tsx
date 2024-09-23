@@ -15,7 +15,7 @@ const Skeleton = ({
   height = '200px',
   active = true,
   paragraph = false,
-  borderRadius = "5px",
+  borderRadius = '5px',
   ...restProps
 }: ISkeleton) => {
   return (

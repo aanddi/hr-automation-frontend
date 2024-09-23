@@ -92,6 +92,7 @@ const ResumesTable = ({ data, loading }: ITable) => {
         dataSource={data}
         columns={columns}
         pagination={false}
+        bordered
         locale={{
           emptyText: <Empty description="Резюме не найдены" />,
         }}

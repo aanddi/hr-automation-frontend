@@ -1,4 +1,4 @@
-import { ListRequests } from "@modules/index";
+import { ListRequests } from '@modules/index';
 
 const ListRequestsPage = () => <ListRequests />;
 

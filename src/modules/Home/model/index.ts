@@ -4,9 +4,9 @@ import toast from 'react-hot-toast';
 import { HhruService } from '@common/api/services/hh';
 import { ScoreballService } from '@common/api/services/scoreball';
 import { ICreateScoreball } from '@common/api/services/scoreball/type';
+import { SearchService } from '@common/api/services/search';
 
 import { recurseFunc } from './helper';
-import { SearchService } from '@common/api/services/search';
 
 const useResumes = (params: string) => {
   return useQuery({
@@ -25,7 +25,7 @@ const useAreas = () => {
   return useQuery({
     queryKey: ['GET-AREAS'],
     queryFn: async () => HhruService.getAreas(),
-    select: (data) => recurseFunc(data, "areas"),
+    select: (data) => recurseFunc(data, 'areas'),
     retry: 2,
     refetchOnMount: false,
     refetchInterval: false,
@@ -37,7 +37,7 @@ const useExperience = () => {
   return useQuery({
     queryKey: ['GET-EXPERIENCE'],
     queryFn: async () => HhruService.getExperience(),
-    select: (data) => recurseFunc(data, "industries"),
+    select: (data) => recurseFunc(data, 'industries'),
 
     retry: 2,
     refetchOnMount: false,

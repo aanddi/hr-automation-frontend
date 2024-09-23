@@ -104,6 +104,8 @@ const ResumeTable = ({ data }: CandidatesTableProps) => {
       dataSource={dataColumns}
       pagination={false}
       columns={columns}
+      bordered
+      footer={() => <div>Всего {dataColumns.length} резюме</div>}
       locale={{
         emptyText: <Empty description="Резюме не найдены" />,
       }}

@@ -61,11 +61,11 @@ const Card = ({ data, loading }: ICard) => {
                 {candidate.scoring.idRequest ? (
                   <Link to={`/request/${candidate.scoring.idRequest}`}>
                     <Tag icon={<CheckCircleOutlined />} color="success">
-                      Скорнг пройден
+                      Скоринг пройден
                     </Tag>
                   </Link>
                 ) : (
-                  <Tag>Скорнг не пройден</Tag>
+                  <Tag>Скоринг не пройден</Tag>
                 )}
               </div>
             </div>

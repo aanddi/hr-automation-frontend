@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 
 const generateExcel = <T extends object>(data: T[], fileName: string) => {
   if (!data) throw new Error('Не возможно скачать файл');
-  
+
   const HEIGHT = 45;
   const WIDTH = 20;
 
