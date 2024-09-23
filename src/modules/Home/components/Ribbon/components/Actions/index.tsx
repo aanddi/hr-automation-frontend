@@ -37,7 +37,7 @@ const Actions = ({ data, candidates, loading }: IActions) => {
           onClick={handleAnalyzeResumes}
           loading={isPending}
           icon={<FileChartColumnIncreasing size={15} />}
-          disabled={data?.items.length === 0 || !data?.items || loading}
+          disabled={data?.items?.length === 0 || !data?.items || loading}
         >
           Проанализировать эту страницу
         </Button>
@@ -45,7 +45,7 @@ const Actions = ({ data, candidates, loading }: IActions) => {
           type="primary"
           ghost
           onClick={handleDownloadExcel}
-          disabled={data?.items.length === 0 || !data?.items || loading}
+          disabled={data?.items?.length === 0 || !data?.items || loading}
           icon={<ArrowDownToLine size={16} />}
         >
           Скачать Excel

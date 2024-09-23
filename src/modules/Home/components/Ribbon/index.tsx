@@ -18,7 +18,7 @@ interface IRibbon {
 }
 
 const Ribbon = ({ data, loading }: IRibbon) => {
-  const candidates: IСandidates[] = data?.items.map((candidate, index) => ({
+  const candidates: IСandidates[] = data?.items?.map((candidate, index) => ({
     id: index + 1,
     age: candidate.age,
     salary: candidate?.salary
@@ -27,6 +27,7 @@ const Ribbon = ({ data, loading }: IRibbon) => {
     profession: candidate.title,
     experience: formatExperience(candidate.total_experience?.months),
     linkResume: candidate.alternate_url,
+    scoring: candidate.scoring?.idRequest ? candidate.scoring.idRequest : undefined,
   }));
 
   return (

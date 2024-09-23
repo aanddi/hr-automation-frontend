@@ -14,7 +14,14 @@ const axiosHhruInstance = axios.create({
   },
 });
 
-axiosHhruInstance.interceptors.request.use(
+const axiosHhAuthorizationInstance = axios.create({
+  baseURL: import.meta.env.VITE_SERVER_API_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+axiosHhAuthorizationInstance.interceptors.request.use(
   (config) => {
     const accessToken = import.meta.env.VITE_ACCESS_TOKEN_HH;
 
@@ -29,5 +36,4 @@ axiosHhruInstance.interceptors.request.use(
   },
 );
 
-
-export { axiosInstance, axiosHhruInstance };
+export { axiosInstance, axiosHhruInstance, axiosHhAuthorizationInstance };

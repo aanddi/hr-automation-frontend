@@ -6,12 +6,13 @@ import { ScoreballService } from '@common/api/services/scoreball';
 import { ICreateScoreball } from '@common/api/services/scoreball/type';
 
 import { recurseFunc } from './helper';
+import { SearchService } from '@common/api/services/search';
 
 const useResumes = (params: string) => {
   return useQuery({
     queryKey: ['GET-RESUMES', params],
     queryFn: async () => {
-      return HhruService.getResumes(params.toString());
+      return SearchService.getResumes(params.toString());
     },
     retry: 2,
     refetchOnMount: false,

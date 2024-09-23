@@ -1,3 +1,4 @@
+import { CheckCircleOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 
 import { Skeleton, Title } from '@components';
@@ -6,7 +7,7 @@ import { IDataResumes } from '@common/api/services/hh/types';
 import { formatDate, formatExperience } from '@common/utils';
 import { formatPrice } from '@common/utils/formatted/Number';
 
-import { Avatar, Flex } from 'antd';
+import { Avatar, Flex, Tag } from 'antd';
 
 import { User } from 'lucide-react';
 
@@ -55,6 +56,17 @@ const Card = ({ data, loading }: ICard) => {
                     {formatPrice(candidate?.salary?.amount)} {candidate?.salary?.currency}
                   </div>
                 </div>
+              </div>
+              <div className={styles.scoting}>
+                {candidate.scoring.idRequest ? (
+                  <Link to={`/request/${candidate.scoring.idRequest}`}>
+                    <Tag icon={<CheckCircleOutlined />} color="success">
+                      Скорнг пройден
+                    </Tag>
+                  </Link>
+                ) : (
+                  <Tag>Скорнг не пройден</Tag>
+                )}
               </div>
             </div>
           </div>

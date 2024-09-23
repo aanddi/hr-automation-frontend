@@ -1,3 +1,4 @@
+import { CheckCircleOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 
 import { SkeletonTable } from '@components';
@@ -5,7 +6,7 @@ import { SkeletonTableColumnsType } from '@components/Skeletons/Table';
 
 import { IСandidates } from '@common/api/services/scoreball/type';
 
-import { Empty, Table } from 'antd';
+import { Empty, Table, Tag } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 
 interface ITable {
@@ -61,6 +62,22 @@ const ResumesTable = ({ data, loading }: ITable) => {
           Ссылка
         </Link>
       ),
+    },
+    {
+      title: 'Скоринг',
+      dataIndex: 'scoring',
+      key: 'scoring',
+      align: 'center',
+      render: (scoring?: string) =>
+        scoring ? (
+          <Link to={`/request/${scoring}`}>
+            <Tag icon={<CheckCircleOutlined />} color="success">
+              Пройден
+            </Tag>
+          </Link>
+        ) : (
+          <Tag>Не пройден</Tag>
+        ),
     },
   ];
 

@@ -8,6 +8,7 @@ interface IСandidates {
    profession: string;
    linkResume: string;
    experience: string;
+   scoring?: string
 }
 
 type ICreateScoreball = ICreacteAnalyze & IDataResumes
