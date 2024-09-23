@@ -35,11 +35,10 @@ const ProfessionalRoles = () => {
                   size="large"
                   style={{ width: '100%' }}
                   allowClear
-                  maxTagCount={8}
+                  maxTagCount={5}
                   multiple
                   showCheckedStrategy={TreeSelect.SHOW_CHILD}
                   treeCheckable
-                  // treeCheckStrictly
                   defaultValue={getValues('professional_role')}
                   onChange={(selectedValues) => {
                     field.onChange(selectedValues.map((value: any) => value));

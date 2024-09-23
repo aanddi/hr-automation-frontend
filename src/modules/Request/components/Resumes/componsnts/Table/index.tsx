@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import { IResumeRequest } from '@common/api/services/request/types';
+import { formatExperience } from '@common/utils';
 import setFio from '@common/utils/formatted/setFio';
 
 import { Empty, Table, Tag } from 'antd';
@@ -16,7 +17,7 @@ interface IResumesTable {
   age: number;
   title: string;
   linkResume: string;
-  totalExperience: number;
+  totalExperience: string;
   scoreball: number;
   comment: string;
 }
@@ -29,7 +30,7 @@ const ResumeTable = ({ data }: CandidatesTableProps) => {
         fullname: setFio(elem.firstName, elem.lastName, elem.middleName),
         age: elem.age,
         title: elem.title,
-        totalExperience: elem.totalExperience,
+        totalExperience: formatExperience(elem.totalExperience),
         linkResume: elem.urlResume,
         scoreball: elem.scoreball,
         comment: elem.comment,
@@ -74,13 +75,11 @@ const ResumeTable = ({ data }: CandidatesTableProps) => {
     },
 
     {
-      title: 'Опыт работы (месяц)',
+      title: 'Опыт работы',
       dataIndex: 'totalExperience',
       key: 'totalExperience',
       align: 'center',
       width: '200px',
-      sorter: (a: IResumesTable, b: IResumesTable) => a.totalExperience - b.totalExperience,
-      render: (experience: number) => (experience ? experience : '-'),
     },
 
     {

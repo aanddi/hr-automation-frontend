@@ -17,7 +17,7 @@ export interface IFilterParams {
   experience: string[];
   schedule: string[];
   job_search_status: string[];
-  per_page: number;
+  per_page: string;
   area: string[];
   relocation: string;
   filter_exp_industry: string[];

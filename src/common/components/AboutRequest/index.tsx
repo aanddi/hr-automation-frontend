@@ -11,7 +11,6 @@ const AboutRequest = ({ data }: { data?: IInfoRequest }) => {
       <Descriptions column={1} bordered labelStyle={{ width: '250px' }}>
         <Descriptions.Item label="Дата создания">{formatDate(data?.createdAt)}</Descriptions.Item>
         <Descriptions.Item label="Название">{data?.title || '-'}</Descriptions.Item>
-       
       </Descriptions>
     </div>
   );

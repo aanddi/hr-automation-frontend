@@ -1,40 +1,19 @@
-import { useQueryClient } from '@tanstack/react-query';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { SkeletonTable } from '@components';
 import { SkeletonTableColumnsType } from '@components/Skeletons/Table';
 
 import { IСandidates } from '@common/api/services/scoreball/type';
 
-import { Empty, Flex, Pagination, Table } from 'antd';
+import { Empty, Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 
 interface ITable {
   data: IСandidates[];
-  totalPages: number;
-  perPage: number;
   loading: boolean;
 }
 
-const ResumesTable = ({ data, loading, totalPages, perPage }: ITable) => {
-  const queryClient = useQueryClient();
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const params = new URLSearchParams(location.search);
-
-  const currentPage = parseInt(params.get('page') || '1', 10);
-
-  const handlePageChange = (page: number) => {
-    params.set('page', page.toString());
-
-    navigate({
-      pathname: location.pathname,
-      search: params.toString(),
-    });
-    queryClient.refetchQueries({ queryKey: ['GET-RESUMES'] });
-  };
-
+const ResumesTable = ({ data, loading }: ITable) => {
   const columns: ColumnsType<IСandidates> = [
     {
       title: '#',
@@ -66,13 +45,11 @@ const ResumesTable = ({ data, loading, totalPages, perPage }: ITable) => {
     },
 
     {
-      title: 'Опыт работы (месяц)',
+      title: 'Опыт работы',
       dataIndex: 'experience',
       key: 'experience',
       align: 'center',
       width: '220px',
-      sorter: (a: IСandidates, b: IСandidates) => a.experience - b.experience,
-      render: (experience: number) => (experience ? experience : '-'),
     },
     {
       title: 'Резюме',
@@ -94,25 +71,14 @@ const ResumesTable = ({ data, loading, totalPages, perPage }: ITable) => {
       columns={columns as SkeletonTableColumnsType[]}
       active
     >
-      <Flex vertical gap={32}>
-        <Table
-          dataSource={data}
-          columns={columns}
-          pagination={false}
-          locale={{
-            emptyText: <Empty description="Резюме не найдены" />,
-          }}
-        />
-        <Pagination
-          current={currentPage}
-          defaultCurrent={currentPage}
-          total={totalPages}
-          onChange={handlePageChange}
-          showSizeChanger={false}
-          pageSize={perPage}
-          defaultPageSize={5}
-        />
-      </Flex>
+      <Table
+        dataSource={data}
+        columns={columns}
+        pagination={false}
+        locale={{
+          emptyText: <Empty description="Резюме не найдены" />,
+        }}
+      />
     </SkeletonTable>
   );
 };

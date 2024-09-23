@@ -58,7 +58,7 @@ const Filters = ({ openFilter, setOpenFilter }: IFilters) => {
       area: [],
       filter_exp_industry: [],
       driver_license_types: [],
-      per_page: 5,
+      per_page: "5",
       relocation: 'living_or_relocation',
       filter_exp_period: 'all_time',
       professional_role: [],

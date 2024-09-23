@@ -22,7 +22,7 @@ const ListRequests = () => {
           })}
           {isLoading &&
             isFetching &&
-            Array.from({ length: 6 }).map((_, index) => <Skeleton key={index} height="150px" />)}
+            Array.from({ length: 8 }).map((_, index) => <Skeleton key={index} height="150px" />)}
         </div>
       </div>
     </div>

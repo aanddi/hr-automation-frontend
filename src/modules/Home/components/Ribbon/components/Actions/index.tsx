@@ -1,42 +1,25 @@
-// import CandidatesTable from './components/Table';
 import { useState } from 'react';
 
+import AnalyzeModal from '@modules/Home/components/modal/AnalyzeModal';
 import { useAnalyzeResumes } from '@modules/Home/model';
 
 import { IDataResumes } from '@common/api/services/hh/types';
 import { IСandidates } from '@common/api/services/scoreball/type';
 import { generateExel } from '@common/utils';
-import { formatPrice } from '@common/utils/formatted/Number';
 
 import { Button, Flex } from 'antd';
 
 import { ArrowDownToLine, FileChartColumnIncreasing } from 'lucide-react';
 
-import ResumesTable from './components/Table';
-
-import styles from './RibbonResumes.module.scss';
-
-import AnalyzeModal from '../modal/AnalyzeModal';
-
-interface IRibbon {
+interface IActions {
   data: IDataResumes;
+  candidates: IСandidates[];
   loading: boolean;
 }
 
-const RibbonResumes = ({ data, loading }: IRibbon) => {
+const Actions = ({ data, candidates, loading }: IActions) => {
   const [openModal, setOpenModal] = useState(false);
   const { mutate: createAnalyze, isPending } = useAnalyzeResumes();
-
-  const candidates: IСandidates[] = data?.items.map((candidate, index) => ({
-    id: index + 1,
-    age: candidate.age,
-    salary: candidate?.salary
-      ? `${formatPrice(candidate?.salary?.amount)} ${candidate?.salary?.currency}`
-      : '-',
-    profession: candidate.title,
-    experience: candidate.total_experience?.months,
-    linkResume: candidate.alternate_url,
-  }));
 
   const handleAnalyzeResumes = () => {
     setOpenModal(true);
@@ -47,8 +30,8 @@ const RibbonResumes = ({ data, loading }: IRibbon) => {
   };
 
   return (
-    <div className={styles.ribbon}>
-      <Flex gap={24} className={styles.actions}>
+    <>
+      <Flex gap={24}>
         <Button
           type="primary"
           onClick={handleAnalyzeResumes}
@@ -68,10 +51,9 @@ const RibbonResumes = ({ data, loading }: IRibbon) => {
           Скачать Excel
         </Button>
       </Flex>
-      <ResumesTable data={candidates} totalPages={data?.pages} perPage={data?.per_page} loading={loading} />
       <AnalyzeModal open={openModal} setOpen={setOpenModal} create={createAnalyze} resumes={data} />
-    </div>
+    </>
   );
 };
 
-export default RibbonResumes;
+export default Actions;

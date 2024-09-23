@@ -165,19 +165,19 @@ export const resumeSearchLogic = [
 export const showOnPage = [
   {
     label: '5 резюме',
-    value: 5,
+    value: "5",
   },
   {
     label: '15 резюме',
-    value: 15,
+    value: "15",
   },
   {
     label: '50 резюме',
-    value: 50,
+    value: "50",
   },
   {
     label: '100 резюме',
-    value: 100,
+    value: "100",
   },
 ];
 
