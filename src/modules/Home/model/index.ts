@@ -5,6 +5,8 @@ import { HhruService } from '@common/api/services/hh';
 import { ScoreballService } from '@common/api/services/scoreball';
 import { ICreateScoreball } from '@common/api/services/scoreball/type';
 
+import { recurseFunc } from './helper';
+
 const useResumes = (params: string) => {
   return useQuery({
     queryKey: ['GET-RESUMES', params],
@@ -22,27 +24,7 @@ const useAreas = () => {
   return useQuery({
     queryKey: ['GET-AREAS'],
     queryFn: async () => HhruService.getAreas(),
-    select: (data) => {
-      if (!data || data.lenght === 0) return [];
-
-      const flattenAreas = (areas: any): any => {
-        const areasFormatted = [];
-
-        for (const area of areas) {
-          const formattedArea = {
-            value: area.id,
-            title: area.name,
-            children: area.areas ? flattenAreas(area.areas) : [],
-          };
-          areasFormatted.push(formattedArea);
-        }
-
-        return areasFormatted;
-      };
-
-      return flattenAreas(data);
-    },
-
+    select: (data) => recurseFunc(data, "areas"),
     retry: 2,
     refetchOnMount: false,
     refetchInterval: false,
@@ -54,26 +36,7 @@ const useExperience = () => {
   return useQuery({
     queryKey: ['GET-EXPERIENCE'],
     queryFn: async () => HhruService.getExperience(),
-    select: (data) => {
-      if (!data || data.lenght === 0) return [];
-
-      const flattenExperience = (experiences: any): any => {
-        const areasFormatted = [];
-
-        for (const experience of experiences) {
-          const formattedArea = {
-            value: experience.id,
-            title: experience.name,
-            children: experience.industries ? flattenExperience(experience.industries) : [],
-          };
-          areasFormatted.push(formattedArea);
-        }
-
-        return areasFormatted;
-      };
-
-      return flattenExperience(data);
-    },
+    select: (data) => recurseFunc(data, "industries"),
 
     retry: 2,
     refetchOnMount: false,
@@ -89,47 +52,37 @@ const useProfessionalRoles = () => {
     select: ({ categories }) => {
       if (!categories || categories.length === 0) return [];
 
-      const flattenAreas = (roles: any): any => {
-        const areasFormatted = [];
-        let count = 1;
-        const uniqId: string[] = [];
+      const resultArray: any = [];
+      const uniqId = new Set();
 
-        for (const role of roles) {
-          const obj = {
-            key: `key-${count}`,
-            value: `key-${count}`,
-            title: role.name,
-            // disabled: true,
-            // checkable: true,
-            disableCheckbox: false,
-            children: [],
-          };
+      categories.map((role: any, index: number) => {
+        const parentObj = {
+          key: `key-${index + 1}`,
+          value: `key-${index + 1}`,
+          title: role.name,
+          children: [],
+        };
 
-          if (Array.isArray(role.roles)) {
-            const arrayedd: any = [];
-            for (const elem of role.roles) {
-              if (uniqId.includes(elem.id)) {
-                continue;
-              } else {
-                uniqId.push(elem.id);
-                const sdfsdf = {
-                  value: elem.id,
-                  title: elem.name,
-                };
-                arrayedd.push(sdfsdf);
-              }
+        if (Array.isArray(role.roles)) {
+          const listRoles: any = [];
+
+          role.roles.map((elem: any) => {
+            if (!uniqId.has(elem.id)) {
+              uniqId.add(elem.id);
+              const newRole = {
+                value: elem.id,
+                title: elem.name,
+              };
+              listRoles.push(newRole);
             }
-            obj.children = arrayedd;
-          }
-
-          areasFormatted.push(obj);
-          count++;
+          });
+          parentObj.children = listRoles;
         }
 
-        return areasFormatted;
-      };
+        resultArray.push(parentObj);
+      });
 
-      return flattenAreas(categories);
+      return resultArray;
     },
     retry: 2,
     refetchOnMount: false,
