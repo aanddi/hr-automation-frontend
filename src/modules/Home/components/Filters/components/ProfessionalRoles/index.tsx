@@ -39,7 +39,6 @@ const ProfessionalRoles = () => {
                   multiple
                   showCheckedStrategy={TreeSelect.SHOW_CHILD}
                   treeCheckable
-                  defaultValue={getValues('professional_role')}
                   onChange={(selectedValues) => {
                     field.onChange(selectedValues.map((value: any) => value));
                   }}

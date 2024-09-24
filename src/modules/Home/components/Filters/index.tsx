@@ -8,6 +8,7 @@ import {
   AgeAndPhoto,
   Automobile,
   CategoryRights,
+  Citizenship,
   Education,
   Employment,
   Experience,
@@ -18,9 +19,11 @@ import {
   Salary,
   Schedule,
   ShowOnPage,
+  Skills,
   Sorting,
   StatusesEmployer,
   Text,
+  WorkTicket,
 } from './components';
 
 import styles from './Filters.module.scss';
@@ -42,15 +45,22 @@ const Filters = ({ openFilter, setOpenFilter }: IFilters) => {
       age_from: '',
       age_to: '',
       text: '',
+      education_level: '',
       logic: 'all',
       order_by: 'relevance',
       gender: 'unknown',
       currency_code: 'RUR',
+      per_page: '5',
+      relocation: 'living_or_relocation',
+      filter_exp_period: 'all_time',
       label_only_with_age: false,
       label_only_with_photo: false,
       label_only_with_salary: false,
       label_only_with_vehicle: false,
-      education_level: '',
+      professional_role: [],
+      skill: [],
+      citizenship: [],
+      work_ticket: [],
       employment: [],
       experience: [],
       schedule: [],
@@ -58,28 +68,17 @@ const Filters = ({ openFilter, setOpenFilter }: IFilters) => {
       area: [],
       filter_exp_industry: [],
       driver_license_types: [],
-      per_page: '5',
-      relocation: 'living_or_relocation',
-      filter_exp_period: 'all_time',
-      professional_role: [],
     },
   });
 
   useEffect(() => {
     const params = Object.fromEntries(new URLSearchParams(location.search));
 
-    const keysToSetAsArrays = [
-      'experience',
-      'employment',
-      'schedule',
-      'job_search_status',
-      'area',
-      'filter_exp_industry',
-      'driver_license_types',
-      'professional_role',
-    ];
+    const arrayKeys = Object.keys(methods.getValues()).filter((key) =>
+      Array.isArray(methods.getValues()[key as keyof IFilterParams]),
+    );
 
-    keysToSetAsArrays.forEach((key) => {
+    arrayKeys.forEach((key) => {
       methods.setValue(
         key as keyof IFilterParams,
         new URLSearchParams(location.search).getAll(key),
@@ -87,7 +86,7 @@ const Filters = ({ openFilter, setOpenFilter }: IFilters) => {
     });
 
     for (const key in params) {
-      if (keysToSetAsArrays.includes(key)) continue;
+      if (arrayKeys.includes(key)) continue;
       if (key === 'label') {
         const labels = new URLSearchParams(location.search).getAll('label');
         labels.forEach((label) => {
@@ -166,6 +165,9 @@ const Filters = ({ openFilter, setOpenFilter }: IFilters) => {
           <StatusesEmployer />
           <AgeAndPhoto />
           <Salary />
+          <Skills />
+          <Citizenship />
+          <WorkTicket />
           <Gender />
           <Education />
           <Experience />

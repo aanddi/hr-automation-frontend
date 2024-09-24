@@ -15,4 +15,14 @@ export const HhruService = {
     const response = await axiosHhruInstance.get(`/professional_roles`);
     return response.data;
   },
+
+  async getSkillsSuggest(text: string) {
+    const response = await axiosHhruInstance.get(`/suggests/skill_set?text=${text}`);
+    return response.data;
+  },
+
+  async getCountries() {
+    const response = await axiosHhruInstance.get(`/areas/countries`);
+    return response.data;
+  },
 };

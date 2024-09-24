@@ -24,4 +24,7 @@ export interface IFilterParams {
   filter_exp_period: string;
   driver_license_types: string[];
   professional_role: string[];
+  skill: string[];
+  citizenship: string[];
+  work_ticket: string[];
 }

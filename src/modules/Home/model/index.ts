@@ -38,7 +38,24 @@ const useExperience = () => {
     queryKey: ['GET-EXPERIENCE'],
     queryFn: async () => HhruService.getExperience(),
     select: (data) => recurseFunc(data, 'industries'),
+    retry: 2,
+    refetchOnMount: false,
+    refetchInterval: false,
+    refetchOnWindowFocus: false,
+  });
+};
 
+const useCountries = () => {
+  return useQuery({
+    queryKey: ['GET-COUNTRIES'],
+    queryFn: async () => HhruService.getCountries(),
+    select: (data) =>
+      data.map((countrie: any) => {
+        return {
+          value: countrie.id,
+          label: countrie.name,
+        };
+      }),
     retry: 2,
     refetchOnMount: false,
     refetchInterval: false,
@@ -111,4 +128,11 @@ const useAnalyzeResumes = () => {
   });
 };
 
-export { useResumes, useAnalyzeResumes, useAreas, useExperience, useProfessionalRoles };
+export {
+  useResumes,
+  useAnalyzeResumes,
+  useAreas,
+  useExperience,
+  useProfessionalRoles,
+  useCountries,
+};

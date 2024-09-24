@@ -14,3 +14,6 @@ export { default as ExperienceIndustry } from './ExperienceIndustry';
 export { default as Automobile } from './Automobile';
 export { default as CategoryRights } from './CategoryRights';
 export { default as ProfessionalRoles } from './ProfessionalRoles';
+export { default as Skills } from './Skills';
+export { default as Citizenship } from './Citizenship';
+export { default as WorkTicket } from './WorkTicket';
