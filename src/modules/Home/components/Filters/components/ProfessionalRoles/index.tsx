@@ -6,11 +6,10 @@ import { Skeleton } from '@components';
 
 import { Flex, TreeSelect } from 'antd';
 
-// import { TreeNode } from 'antd/es/tree-select';
 import styles from '../Components.module.scss';
 
 const ProfessionalRoles = () => {
-  const { control, getValues } = useFormContext();
+  const { control } = useFormContext();
 
   const { data: professionalRoles, isLoading, isFetching } = useProfessionalRoles();
 
