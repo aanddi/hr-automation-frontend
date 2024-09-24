@@ -1,9 +1,10 @@
-import { axiosInstance } from '@common/api/instance';
-
-// import { IDataResumes } from '../hh/types';
+import { axiosHhAuthorizationInstance } from '@common/api/instance';
 
 export const ScoreballService = {
   async createScoreball(body: any) {
-    return await axiosInstance.post<Promise<{ idRequest: number }>>('/scoreball', body);
+    return await axiosHhAuthorizationInstance.post<Promise<{ idRequest: number }>>(
+      '/scoreball',
+      body,
+    );
   },
 };

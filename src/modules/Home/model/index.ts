@@ -112,7 +112,12 @@ const useProfessionalRoles = () => {
 const useAnalyzeResumes = () => {
   return useMutation({
     mutationFn: async (data: ICreateScoreball) => {
-      const body = { resumes: data.items, title: data.title };
+      const idResumes = data.items.map((resume) => {
+        return {
+          id: resume.id,
+        };
+      });
+      const body = { resumes: idResumes, title: data.title };
       const response = await toast.promise(ScoreballService.createScoreball(body), {
         loading: 'Анализ списка резюме...',
         success: 'Анализ успешно проведен и сохранен',
