@@ -2,7 +2,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 
 import { Flex, Select } from 'antd';
 
-import { driverLicenseTypes } from '../../constans';
+import { driverLicenseTypes } from '../../dictionaries';
 import styles from '../Components.module.scss';
 
 const CategoryRights = () => {

@@ -6,7 +6,7 @@ import { Skeleton } from '@components';
 
 import { Alert, Flex, Select, TreeSelect } from 'antd';
 
-import { expPeriod } from '../../constans';
+import { expPeriod } from '../../dictionaries';
 import styles from '../Components.module.scss';
 
 const Region = () => {

@@ -2,7 +2,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 
 import { Flex, Radio } from 'antd';
 
-import { genders } from '../../constans';
+import { genders } from '../../dictionaries';
 import styles from '../Components.module.scss';
 
 const Gender = () => {

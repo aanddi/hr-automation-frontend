@@ -6,7 +6,7 @@ import { Skeleton } from '@components';
 
 import { Flex, Select, TreeSelect } from 'antd';
 
-import { searchRelocation } from '../../constans';
+import { searchRelocation } from '../../dictionaries';
 import styles from '../Components.module.scss';
 
 const Region = () => {

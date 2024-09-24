@@ -4,7 +4,7 @@ import { formatPrice, parserNumber } from '@common/utils/formatted/Number';
 
 import { Checkbox, Flex, InputNumber, Select } from 'antd';
 
-import { salary } from '../../constans';
+import { salary } from '../../dictionaries';
 import styles from '../Components.module.scss';
 
 const Salary = () => {

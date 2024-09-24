@@ -19,74 +19,43 @@ import {
   Salary,
   Schedule,
   ShowOnPage,
-  Skills,
   Sorting,
   StatusesEmployer,
   Text,
   WorkTicket,
 } from './components';
 
-import styles from './Filters.module.scss';
-import { IFilterParams } from './types';
-
-interface IFilters {
-  openFilter: boolean;
-  setOpenFilter: (state: boolean) => void;
-}
+import { defaultValuesForm } from './constans';
+import { IFilterParams, IFilters } from './types';
 
 const Filters = ({ openFilter, setOpenFilter }: IFilters) => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const methods = useForm<IFilterParams>({
-    defaultValues: {
-      salary_from: '',
-      salary_to: '',
-      age_from: '',
-      age_to: '',
-      text: '',
-      education_level: '',
-      logic: 'all',
-      order_by: 'relevance',
-      gender: 'unknown',
-      currency_code: 'RUR',
-      per_page: '5',
-      relocation: 'living_or_relocation',
-      filter_exp_period: 'all_time',
-      label_only_with_age: false,
-      label_only_with_photo: false,
-      label_only_with_salary: false,
-      label_only_with_vehicle: false,
-      professional_role: [],
-      skill: [],
-      citizenship: [],
-      work_ticket: [],
-      employment: [],
-      experience: [],
-      schedule: [],
-      job_search_status: [],
-      area: [],
-      filter_exp_industry: [],
-      driver_license_types: [],
-    },
+    defaultValues: defaultValuesForm,
   });
 
   useEffect(() => {
     const params = Object.fromEntries(new URLSearchParams(location.search));
+    const formValues = methods.getValues();
 
-    const arrayKeys = Object.keys(methods.getValues()).filter((key) =>
-      Array.isArray(methods.getValues()[key as keyof IFilterParams]),
+    // ключи массивов
+    const arrayKeysForm = Object.keys(formValues).filter((key) =>
+      Array.isArray(formValues[key as keyof IFilterParams]),
     );
 
-    arrayKeys.forEach((key) => {
+    // загрузка всех массиво в форму
+    arrayKeysForm.forEach((key) => {
       methods.setValue(
         key as keyof IFilterParams,
         new URLSearchParams(location.search).getAll(key),
       );
     });
 
+    // загрузка простых параметров и label
     for (const key in params) {
-      if (arrayKeys.includes(key)) continue;
+      // example: label: only_with_salary => label_only_with_salary: true
       if (key === 'label') {
         const labels = new URLSearchParams(location.search).getAll('label');
         labels.forEach((label) => {
@@ -94,29 +63,29 @@ const Filters = ({ openFilter, setOpenFilter }: IFilters) => {
         });
       }
 
-      methods.setValue(key as keyof IFilterParams, params[key]);
+      if (!arrayKeysForm.includes(key)) {
+        methods.setValue(key as keyof IFilterParams, params[key]);
+      }
     }
   }, [location, methods]);
 
-  const handleSearch = async (data: any) => {
+  const handleSearch = async (data: IFilterParams) => {
     const newUrlQueryParams = new URLSearchParams();
 
-    for (const key in data) {
-      if (data[key] && !key.startsWith('label_') && !Array.isArray(data[key])) {
-        newUrlQueryParams.set(key, data[key]);
-      }
+    Object.entries(data).forEach(([key, value]) => {
+      const isArrayQuery = Array.isArray(value);
+      const isLabelQuery = key.startsWith('label_') && value;
+      const isSimpleQuery = value && !isLabelQuery && !isArrayQuery;
 
-      if (Array.isArray(data[key])) {
-        data[key].map((level) => {
-          return newUrlQueryParams.append(key, level);
-        });
-      }
+      if (isSimpleQuery) newUrlQueryParams.set(key, value);
 
-      if (key.startsWith('label_') && data[key]) {
-        const substringLabel = key.slice(6);
-        newUrlQueryParams.append('label', substringLabel);
+      // example: label_only_with_salary: true => label: only_with_salary
+      if (isLabelQuery) newUrlQueryParams.append('label', key.slice(6));
+
+      if (isArrayQuery) {
+        value.forEach((elem: string) => newUrlQueryParams.append(key, elem));
       }
-    }
+    });
 
     navigate({
       pathname: location.pathname,
@@ -127,12 +96,12 @@ const Filters = ({ openFilter, setOpenFilter }: IFilters) => {
   };
 
   const handleResetParams = () => {
-    setOpenFilter(false);
-    methods.reset();
     navigate({
       pathname: location.pathname,
       search: new URLSearchParams().toString(),
     });
+    setOpenFilter(false);
+    methods.reset();
   };
 
   return (
@@ -144,9 +113,8 @@ const Filters = ({ openFilter, setOpenFilter }: IFilters) => {
       open={openFilter}
       width={800}
       onClose={() => setOpenFilter(false)}
-      className={styles.filter}
       footer={
-        <Flex className={styles.footer} gap={16}>
+        <Flex gap={16} style={{ padding: '16px' }}>
           <Button type="primary" size="large" onClick={methods.handleSubmit(handleSearch)}>
             Применить
           </Button>
@@ -165,7 +133,7 @@ const Filters = ({ openFilter, setOpenFilter }: IFilters) => {
           <StatusesEmployer />
           <AgeAndPhoto />
           <Salary />
-          <Skills />
+          {/* <Skills /> */}
           <Citizenship />
           <WorkTicket />
           <Gender />

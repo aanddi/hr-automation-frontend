@@ -2,7 +2,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 
 import { Flex, Radio } from 'antd';
 
-import { showOnPage } from '../../constans';
+import { showOnPage } from '../../dictionaries';
 import styles from '../Components.module.scss';
 
 const ShowOnPage = () => {

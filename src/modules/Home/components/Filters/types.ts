@@ -1,4 +1,4 @@
-export interface IFilterParams {
+interface IFilterParams {
   salary_from: string;
   salary_to: string;
   age_from: string;
@@ -28,3 +28,10 @@ export interface IFilterParams {
   citizenship: string[];
   work_ticket: string[];
 }
+
+interface IFilters {
+  openFilter: boolean;
+  setOpenFilter: (state: boolean) => void;
+}
+
+export type { IFilterParams, IFilters };

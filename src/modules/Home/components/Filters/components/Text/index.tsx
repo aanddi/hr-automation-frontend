@@ -2,7 +2,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 
 import { Flex, Input, Select } from 'antd';
 
-import { resumeSearchLogic } from '../../constans';
+import { resumeSearchLogic } from '../../dictionaries';
 import styles from '../Components.module.scss';
 
 const Text = () => {

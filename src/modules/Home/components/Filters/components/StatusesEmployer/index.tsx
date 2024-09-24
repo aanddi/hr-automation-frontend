@@ -2,7 +2,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 
 import { Checkbox, Flex } from 'antd';
 
-import { statusesEmployer } from '../../constans';
+import { statusesEmployer } from '../../dictionaries';
 import styles from '../Components.module.scss';
 
 const StatusesEmployer = () => {

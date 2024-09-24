@@ -2,7 +2,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 
 import { Checkbox, Flex } from 'antd';
 
-import { schedule } from '../../constans';
+import { schedule } from '../../dictionaries';
 import styles from '../Components.module.scss';
 
 const Schedule = () => {

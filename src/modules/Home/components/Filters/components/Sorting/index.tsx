@@ -2,7 +2,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 
 import { Flex, Radio } from 'antd';
 
-import { searchOrder } from '../../constans';
+import { searchOrder } from '../../dictionaries';
 import styles from '../Components.module.scss';
 
 const Sorting = () => {

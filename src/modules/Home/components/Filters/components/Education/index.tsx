@@ -2,7 +2,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 
 import { Button, Flex, Radio } from 'antd';
 
-import { educationLevel } from '../../constans';
+import { educationLevel } from '../../dictionaries';
 import styles from '../Components.module.scss';
 
 const Education = () => {
