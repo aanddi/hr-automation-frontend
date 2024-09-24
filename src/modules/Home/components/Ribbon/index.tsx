@@ -2,7 +2,7 @@ import { Title } from '@components';
 
 import { IDataResumes } from '@common/api/services/hh/types';
 import { IСandidates } from '@common/api/services/scoreball/type';
-import { formatExperience } from '@common/utils';
+import { formatCurrency, formatExperience } from '@common/utils';
 import { formatPrice } from '@common/utils/formatted/Number';
 
 import { Skeleton } from 'antd';
@@ -22,7 +22,7 @@ const Ribbon = ({ data, loading }: IRibbon) => {
     id: index + 1,
     age: candidate.age,
     salary: candidate?.salary
-      ? `${formatPrice(candidate?.salary?.amount)} ${candidate?.salary?.currency}`
+      ? `${formatPrice(candidate?.salary?.amount)} ${formatCurrency(candidate?.salary?.currency)}`
       : '-',
     profession: candidate.title,
     experience: formatExperience(candidate.total_experience?.months),

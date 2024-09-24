@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Skeleton, Title } from '@components';
 
 import { IDataResumes } from '@common/api/services/hh/types';
-import { formatDate, formatExperience } from '@common/utils';
+import { formatCurrency, formatDate, formatExperience } from '@common/utils';
 import { formatPrice } from '@common/utils/formatted/Number';
 
 import { Avatar, Flex, Tag } from 'antd';
@@ -53,7 +53,8 @@ const Card = ({ data, loading }: ICard) => {
                     Опыт работы: {formatExperience(candidate?.total_experience?.months)}
                   </div>
                   <div className={styles.salary}>
-                    {formatPrice(candidate?.salary?.amount)} {candidate?.salary?.currency}
+                    {formatPrice(candidate?.salary?.amount)}{' '}
+                    {formatCurrency(candidate?.salary?.currency)}
                   </div>
                 </div>
               </div>

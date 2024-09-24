@@ -7,7 +7,7 @@ const axiosInstance = axios.create({
   },
 });
 
-const axiosHhruInstance = axios.create({
+const axiosApiHhInstance = axios.create({
   baseURL: 'https://api.hh.ru',
   headers: {
     'Content-Type': 'application/json',
@@ -36,4 +36,4 @@ axiosHhAuthorizationInstance.interceptors.request.use(
   },
 );
 
-export { axiosInstance, axiosHhruInstance, axiosHhAuthorizationInstance };
+export { axiosInstance, axiosApiHhInstance, axiosHhAuthorizationInstance };

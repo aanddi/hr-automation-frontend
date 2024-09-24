@@ -13,7 +13,7 @@ const AppLayout = ({ children }: PropsWithChildren) => {
   return (
     <Layout className={styles.layout}>
       <Header />
-      <main>
+      <main className={styles.page}>
         <div className="container">{children}</div>
       </main>
       <FloatButton.BackTop icon={<ArrowUp size={22} />} className={styles.floatButton} />
