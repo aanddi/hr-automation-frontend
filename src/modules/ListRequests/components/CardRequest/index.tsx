@@ -1,7 +1,7 @@
 import { IListRequestItem } from '@common/api/services/request/types';
 import { formatDate } from '@common/utils';
 
-import { Button, Descriptions, Popconfirm, Typography } from 'antd';
+import { Button, Descriptions, Popconfirm, Tag, Typography } from 'antd';
 
 import { Trash } from 'lucide-react';
 
@@ -19,9 +19,16 @@ const CardRequest = ({ item, id }: { item: IListRequestItem; id: number }) => {
   return (
     <div className={styles.card}>
       <div className={styles.wrapper}>
-        <Typography.Title level={4} className={styles.title}>
-          {item.title ? `${item.title}` : `Запрос №${id}`}
-        </Typography.Title>
+        <div className={styles.header}>
+          <Typography.Title level={4} className={styles.title}>
+            {item.title ? `${item.title}` : `Запрос №${id}`}
+          </Typography.Title>
+          {item.isDeepScoring ? (
+            <Tag color="purple">Полный скоринг</Tag>
+          ) : (
+            <Tag>Поверхностный скоринг</Tag>
+          )}
+        </div>
         <div className={styles.info}>
           <Descriptions>
             <Descriptions.Item label="Дата создания">

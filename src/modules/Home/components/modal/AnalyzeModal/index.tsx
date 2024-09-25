@@ -5,12 +5,13 @@ import { Title } from '@components';
 import { IDataResumes } from '@common/api/services/hh/types';
 import { ICreateScoreball } from '@common/api/services/scoreball/type';
 
-import { Alert, Button, Descriptions, Flex, Input, Modal } from 'antd';
+import { Alert, Button, Descriptions, Flex, Input, Modal, Switch, Tooltip } from 'antd';
 
 import styles from './AnalyzeModal.module.scss';
 
 export interface ICreacteAnalyze {
   title: string;
+  isDeepScoring: boolean;
 }
 
 interface IAnalyzeModal {
@@ -21,16 +22,25 @@ interface IAnalyzeModal {
 }
 
 const AnalyzeModal = ({ open, setOpen, create, resumes }: IAnalyzeModal) => {
-  const { control, handleSubmit } = useForm<ICreacteAnalyze>();
+  const { control, handleSubmit, watch, reset } = useForm<ICreacteAnalyze>({
+    defaultValues: {
+      title: '',
+      isDeepScoring: false,
+    },
+  });
 
   const handleCreate = (data: ICreacteAnalyze) => {
     const body = {
       ...resumes,
       title: data.title,
+      isDeepScoring: data.isDeepScoring,
     };
     create(body);
     setOpen(false);
+    reset();
   };
+
+  const isDeepScoring = watch('isDeepScoring');
 
   return (
     <Modal
@@ -52,7 +62,9 @@ const AnalyzeModal = ({ open, setOpen, create, resumes }: IAnalyzeModal) => {
       <form onSubmit={handleSubmit(handleCreate)} className={styles.form}>
         <Flex vertical gap={16}>
           <Descriptions column={1}>
-            <Descriptions.Item label="Количество резюме">{resumes?.items.length}</Descriptions.Item>
+            <Descriptions.Item label="Количество резюме">
+              {resumes?.items.length} (лимит за раз 10)
+            </Descriptions.Item>
           </Descriptions>
           <Controller
             name="title"
@@ -65,6 +77,33 @@ const AnalyzeModal = ({ open, setOpen, create, resumes }: IAnalyzeModal) => {
               />
             )}
           />
+          <div className={styles.scoring}>
+            <Tooltip
+              className={styles.popover}
+              placement="bottom"
+              title="За полный скоринг будет списываться просмотры резюме."
+            >
+              <div>Полный скоринг</div>
+            </Tooltip>
+            <Controller
+              name="isDeepScoring"
+              control={control}
+              render={({ field }) => <Switch {...field} />}
+            />
+          </div>
+          {!isDeepScoring ? (
+            <Alert
+              message="В обычном скоринге не учитываются: описание опыта работы, учебное заведение и специальность, контакты и профессиональная роль"
+              type="warning"
+              showIcon
+            />
+          ) : (
+            <Alert
+              message="Полный скоринг снимает снимает просмотры резюме с баланса!"
+              type="warning"
+              showIcon
+            />
+          )}
           <Alert message="Анализ резюме может занять какое-то время" type="info" showIcon />
         </Flex>
       </form>

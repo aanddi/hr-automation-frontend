@@ -6,6 +6,7 @@ interface IListRequestItem {
   id: number;
   createdAt: string;
   title: string;
+  isDeepScoring: boolean;
 }
 
 interface IRequest {
@@ -17,6 +18,7 @@ interface IRequest {
 interface IInfoRequest {
   createdAt: string;
   title: string;
+  isDeepScoring: boolean;
 }
 
 interface IResumeRequest {
