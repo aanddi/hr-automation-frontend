@@ -54,9 +54,9 @@ const Card = ({ data, loading }: ICard) => {
                     <div className={styles.status}>
                       {candidate?.job_search_status?.name === 'Активно ищет работу' ? (
                         <Tag color="green">{candidate?.job_search_status?.name}</Tag>
-                      ) : (
+                      ) : candidate?.job_search_status ? (
                         <Tag color="orange">{candidate?.job_search_status?.name}</Tag>
-                      )}
+                      ) : null}
                     </div>
                     {candidate?.education?.level?.name && (
                       <div className={styles.experience}>
