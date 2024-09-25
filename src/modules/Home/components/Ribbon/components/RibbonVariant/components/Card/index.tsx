@@ -52,10 +52,10 @@ const Card = ({ data, loading }: ICard) => {
                       </div>
                     </Flex>
                     <div className={styles.status}>
-                      {candidate.job_search_status.name === 'Активно ищет работу' ? (
-                        <Tag color="green">{candidate.job_search_status.name}</Tag>
+                      {candidate?.job_search_status?.name === 'Активно ищет работу' ? (
+                        <Tag color="green">{candidate?.job_search_status?.name}</Tag>
                       ) : (
-                        <Tag color="orange">{candidate.job_search_status.name}</Tag>
+                        <Tag color="orange">{candidate?.job_search_status?.name}</Tag>
                       )}
                     </div>
                     {candidate?.education?.level?.name && (
