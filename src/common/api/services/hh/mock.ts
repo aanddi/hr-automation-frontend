@@ -141,6 +141,11 @@ export const mockResponseResumes = {
       scoring: {
         idRequest: '20',
       },
+      job_search_status: {
+        id: 'active_search',
+        name: 'Активно ищет работу',
+        last_change_time: '2024-09-24T18:56:50.075337Z',
+      },
     },
   ],
 };

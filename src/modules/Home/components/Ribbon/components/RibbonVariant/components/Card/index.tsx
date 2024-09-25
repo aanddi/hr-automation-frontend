@@ -48,15 +48,21 @@ const Card = ({ data, loading }: ICard) => {
                       <div>{candidate?.area?.name}</div>
                       <div className={styles.update}>
                         <span>Обновленно:</span>
-                        <span>{formatDate(candidate.updated_at, 'DD.MM.YYYY')}</span>
+                        <span>{formatDate(candidate.updated_at, 'DD MMMM')}</span>
                       </div>
                     </Flex>
+                    <div className={styles.status}>
+                      {candidate.job_search_status.name === 'Активно ищет работу' ? (
+                        <Tag color="green">{candidate.job_search_status.name}</Tag>
+                      ) : (
+                        <Tag color="orange">{candidate.job_search_status.name}</Tag>
+                      )}
+                    </div>
                     {candidate?.education?.level?.name && (
                       <div className={styles.experience}>
                         Образование: {candidate?.education?.level?.name}
                       </div>
                     )}
-
                     <div className={styles.salary}>
                       <span>{formatPrice(candidate?.salary?.amount)}</span>
                       <span>{formatCurrency(candidate?.salary?.currency)}</span>

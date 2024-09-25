@@ -29,6 +29,10 @@
         color: #02af02;
       }
 
+      .status {
+        margin: 8px 0;
+      }
+
       .experience {
         margin: 8px 0;
       }
@@ -42,7 +46,7 @@
   }
 
   .body {
-    margin-top: 24px;
+    margin-top: 32px;
 
     & > *:not(:last-child) {
       margin-bottom: 16px;
