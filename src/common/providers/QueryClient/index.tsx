@@ -4,6 +4,7 @@ import {
   QueryClient,
   QueryClientProvider as QueryProvider,
 } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { AxiosError } from 'axios';
 import { PropsWithChildren } from 'react';
 import toast from 'react-hot-toast';
@@ -51,7 +52,12 @@ const queryClient = new QueryClient({
 });
 
 const QueryClientProvider = ({ children }: PropsWithChildren) => {
-  return <QueryProvider client={queryClient}>{children}</QueryProvider>;
+  return (
+    <QueryProvider client={queryClient}>
+      {children}
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryProvider>
+  );
 };
 
 export default QueryClientProvider;

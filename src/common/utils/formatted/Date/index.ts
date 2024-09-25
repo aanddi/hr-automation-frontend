@@ -1,11 +1,13 @@
 import dayjs from 'dayjs';
+import 'dayjs/locale/ru';
 
 const formatDate = (date?: string, format?: string) => {
   if (!date) {
     console.log('Не возможно отформатировать дату');
     return '';
   }
-  return dayjs(date).format(format ? format : 'DD.MM.YYYY HH:mm');
+  dayjs.locale('ru');
+  return dayjs(date).format(format ? format : 'MMMM YYYY');
 };
 
 export default formatDate;

@@ -1,21 +1,23 @@
 .card {
   margin-bottom: 16px;
+  font-size: 15px;
 
   .wrapper {
     padding: 30px;
     border: 1px solid #eaeaea;
-    border-radius: 15px;
-
-    display: flex;
-    justify-content: space-between;
+    border-radius: 35px;
   }
 
   .header {
     display: flex;
-    gap: 24px;
+    justify-content: space-between;
+
+    .headerContent {
+      display: flex;
+      gap: 24px;
+    }
 
     .info {
-      font-size: 15px;
       .title {
         color: inherit;
       }
@@ -32,7 +34,44 @@
       }
 
       .salary {
+        display: flex;
+        gap: 4px;
         font-weight: 500;
+      }
+    }
+  }
+
+  .body {
+    margin-top: 24px;
+
+    & > *:not(:last-child) {
+      margin-bottom: 16px;
+    }
+
+    .item {
+      display: flex;
+      gap: 43px;
+      border-bottom: 1px solid #eaeaea;
+      padding-bottom: 16px;
+
+      .label {
+        color: #a4a4a4;
+        width: 100px;
+      }
+
+      .desc {
+        .company {
+          font-weight: 600;
+        }
+
+        .info {
+          display: flex;
+          gap: 8px;
+
+          .separator {
+            color: #a4a4a4;
+          }
+        }
       }
     }
   }
