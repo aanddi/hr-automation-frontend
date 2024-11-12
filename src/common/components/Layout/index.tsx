@@ -19,10 +19,7 @@ const AppLayout = ({ children }: PropsWithChildren) => {
         <Header />
         <main className={styles.page}>{children}</main>
         <FloatButton.BackTop icon={<ArrowUp size={22} />} className={styles.floatButton} />
-        <Toaster
-          position="top-right"
-          toastOptions={{ style: { fontSize: ' 14px' }, duration: 3000 }}
-        />
+        <Toaster position="top-right" toastOptions={{ style: { fontSize: ' 14px' } }} />
       </Layout>
     </ConfigProvider>
   );
