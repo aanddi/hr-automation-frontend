@@ -1,9 +1,8 @@
 import { Controller, useForm } from 'react-hook-form';
-import { Navigate, useLocation } from 'react-router-dom';
 
 import { Title } from '@components';
 
-import { useAppDispatch, useAuth } from '@common/hooks';
+import { useAppDispatch } from '@common/hooks';
 
 import { login } from '@store/slices/user.slice';
 
@@ -24,12 +23,6 @@ const Auth = () => {
   } = useForm<IAuth>();
 
   const dispatch = useAppDispatch();
-  const location = useLocation();
-  const auth = useAuth();
-
-  if (auth && location.pathname == '/auth') {
-    return <Navigate to="/" state={location} replace />;
-  }
 
   const handleLogin = (data: IAuth) => {
     dispatch(login(data));

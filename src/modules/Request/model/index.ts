@@ -1,16 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { RequestService } from '@common/api/services/request';
+import { requestService } from '@common/api/services/request';
 
 const useRequestsById = (id: number) => {
   return useQuery({
     queryKey: ['GET-REQUEST-ID'],
-    queryFn: async () => RequestService.getRequestById(id),
+    queryFn: async () => requestService.getRequestById(id),
     select: ({ idRequest, info, resumes }) => {
       return {
         idRequest,
         info,
-        resumes: resumes.sort((a, b) => b.scoreball - a.scoreball),
+        resumes: resumes.sort((a: any, b: any) => b.scoreball - a.scoreball),
       };
     },
   });
