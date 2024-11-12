@@ -2,7 +2,7 @@ import debounce from 'lodash/debounce';
 import { useState } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 
-import { HhruService } from '@common/api/services/hh';
+import { hhService } from '@common/api/services/hh';
 
 import { Flex, Select } from 'antd';
 
@@ -21,7 +21,7 @@ const Skills = () => {
   const handleSearch = (value: string) => {
     const debouncedSearch = debounce(async (value) => {
       if (value) {
-        const response = await HhruService.getSkillsSuggest(value);
+        const response = await hhService.getSkillsSuggest(value);
         const formatter = response.items.map((elem: ISkills) => {
           return {
             value: elem.id,

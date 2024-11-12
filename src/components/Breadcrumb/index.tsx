@@ -1,8 +1,7 @@
+import { ChevronLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 import { BreadcrumbProps, Button, Flex, Breadcrumb as UIBreadcrumb } from 'antd';
-
-import { ChevronLeft } from 'lucide-react';
 
 interface IBreadcrumbProps extends BreadcrumbProps {
   buttonBack?: boolean;

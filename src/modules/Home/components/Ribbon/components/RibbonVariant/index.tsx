@@ -1,9 +1,9 @@
-import { AppstoreOutlined, BarsOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { IDataResumes } from '@common/api/services/hh/types';
 import { IСandidates } from '@common/api/services/scoreball/type';
+import { Appstore, UnorderedList } from '@common/icons';
 
 import { Flex, Pagination, Segmented } from 'antd';
 
@@ -62,12 +62,12 @@ const RibbonVariant = ({ data, candidates, loading }: IRibbon) => {
             {
               label: 'Карточный вид',
               value: Display.CARD,
-              icon: <AppstoreOutlined />,
+              icon: <Appstore />,
             },
             {
               label: 'Табличный вид',
               value: Display.TABLE,
-              icon: <BarsOutlined />,
+              icon: <UnorderedList />,
             },
           ]}
           onChange={(valueSegmented) => handleVariant(valueSegmented)}

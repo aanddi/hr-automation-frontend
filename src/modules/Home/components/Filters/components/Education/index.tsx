@@ -7,6 +7,7 @@ import styles from '../Components.module.scss';
 
 const Education = () => {
   const { control, resetField } = useFormContext();
+
   return (
     <form>
       <Flex gap={20}>

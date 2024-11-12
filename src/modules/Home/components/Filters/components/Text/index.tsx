@@ -7,6 +7,7 @@ import styles from '../Components.module.scss';
 
 const Text = () => {
   const { control } = useFormContext();
+
   return (
     <form>
       <Flex gap={20}>

@@ -7,6 +7,7 @@ import styles from '../Components.module.scss';
 
 const ShowOnPage = () => {
   const { control } = useFormContext();
+
   return (
     <form>
       <Flex gap={20}>

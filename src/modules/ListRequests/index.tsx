@@ -1,31 +1,35 @@
 import { Skeleton, Title } from '@components';
 
+import { ContainerPage } from '@common/components';
+
 import { Alert } from 'antd';
 
 import CardRequest from './components/CardRequest';
 
 import styles from './ListRequests.module.scss';
-import { useRequests } from './model';
+import { useRequests } from './api';
 
 const ListRequests = () => {
-  const { data, isLoading, isFetching } = useRequests();
+  const { data: requests, isLoading: isLoadingRequest } = useRequests();
 
   return (
-    <div className={styles.list}>
+    <ContainerPage className={styles.list}>
       <Title title="Мои запросы" />
       <div className={styles.content}>
-        {!data && !isLoading && <Alert message="Запросы не найдены" type="info" />}
-        {data?.items.length === 0 && <Alert message="У вас нет запросов" type="info" />}
-        <div className={styles.ribon}>
-          {data?.items.map((card) => {
+        {requests?.items.length === 0 && !isLoadingRequest && (
+          <Alert message="Запросы не найдены" type="info" />
+        )}
+
+        <div className={styles.ribbon}>
+          {requests?.items.map((card) => {
             return <CardRequest key={card.id} item={card} id={card.id} />;
           })}
-          {isLoading &&
-            isFetching &&
-            Array.from({ length: 8 }).map((_, index) => <Skeleton key={index} height="150px" />)}
+
+          {isLoadingRequest &&
+            [...Array(8)].map((_, index) => <Skeleton key={index} height="150px" />)}
         </div>
       </div>
-    </div>
+    </ContainerPage>
   );
 };
 

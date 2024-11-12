@@ -1,11 +1,10 @@
 import { Controller, useFormContext } from 'react-hook-form';
 
-import { useAreas } from '@modules/Home/model';
-
 import { Skeleton } from '@components';
 
 import { Flex, Select, TreeSelect } from 'antd';
 
+import { useAreas } from '../../api';
 import { searchRelocation } from '../../dictionaries';
 import styles from '../Components.module.scss';
 

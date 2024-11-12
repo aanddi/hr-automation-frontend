@@ -1,9 +1,8 @@
 import { Controller, useFormContext } from 'react-hook-form';
 
-import { useCountries } from '@modules/Home/model';
-
 import { Flex, Select } from 'antd';
 
+import { useCountries } from '../../api';
 import styles from '../Components.module.scss';
 
 const Citizenship = () => {

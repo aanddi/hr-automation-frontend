@@ -1,79 +1,95 @@
-.card {
-  margin-bottom: 16px;
-  font-size: 15px;
-
-  .wrapper {
-    padding: 30px;
-    border: 1px solid #eaeaea;
-    border-radius: 35px;
-  }
-
-  .header {
-    display: flex;
-    justify-content: space-between;
-
-    .headerContent {
-      display: flex;
-      gap: 24px;
-    }
-
-    .info {
-      .title {
-        color: inherit;
-      }
-
-      .update {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        color: #02af02;
-      }
-
-      .status {
-        margin: 8px 0;
-      }
-
-      .experience {
-        margin: 8px 0;
-      }
-
-      .salary {
-        display: flex;
-        gap: 4px;
-        font-weight: 500;
-      }
+.cards {
+  .skeleton {
+    h3 {
+      border-radius: 35px !important;
     }
   }
 
-  .body {
-    margin-top: 32px;
+  .card {
+    margin-bottom: 16px;
+    font-size: 15px;
 
-    & > *:not(:last-child) {
-      margin-bottom: 16px;
+    .wrapper {
+      padding: 30px;
+      border: 1px solid #eaeaea;
+      border-radius: 35px;
     }
 
-    .item {
+    .header {
       display: flex;
-      gap: 43px;
-      border-bottom: 1px solid #eaeaea;
-      padding-bottom: 16px;
+      justify-content: space-between;
 
-      .label {
-        color: #a4a4a4;
-        width: 100px;
+      .headerContent {
+        display: flex;
+        gap: 24px;
       }
 
-      .desc {
-        .company {
-          font-weight: 600;
+      .userAvatar {
+        background-color: darken($blue-light, 10%);
+
+        .iconUser {
+          font-size: 50px;
+        }
+      }
+
+      .info {
+        .title {
+          color: inherit;
         }
 
-        .info {
+        .update {
           display: flex;
+          align-items: center;
           gap: 8px;
+          color: #02af02;
+        }
 
-          .separator {
-            color: #a4a4a4;
+        .status {
+          margin: 8px 0;
+        }
+
+        .experience {
+          margin: 8px 0;
+        }
+
+        .salary {
+          display: flex;
+          gap: 4px;
+          font-weight: 500;
+        }
+      }
+    }
+
+    .body {
+      margin-top: 32px;
+
+      & > *:not(:last-child) {
+        margin-bottom: 16px;
+      }
+
+      .item {
+        display: flex;
+        gap: 43px;
+        border-bottom: 1px solid #eaeaea;
+        padding-bottom: 16px;
+
+        .label {
+          color: #a4a4a4;
+          width: 100px;
+        }
+
+        .desc {
+          .company {
+            font-weight: 600;
+          }
+
+          .info {
+            display: flex;
+            gap: 8px;
+
+            .separator {
+              color: #a4a4a4;
+            }
           }
         }
       }

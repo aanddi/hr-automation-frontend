@@ -1,9 +1,8 @@
 import { IResumeRequest } from '@common/api/services/request/types';
+import { Download } from '@common/icons';
 import { generateExel } from '@common/utils';
 
 import { Button, Flex } from 'antd';
-
-import { ArrowDownToLine } from 'lucide-react';
 
 import styles from './Resumes.module.scss';
 import ResumeTable from './componsnts/Table';
@@ -25,7 +24,7 @@ const Resumes = ({ resumes, idRequest }: IResumes) => {
           type="primary"
           onClick={handleDownloadExcel}
           disabled={resumes?.length === 0}
-          icon={<ArrowDownToLine size={16} />}
+          icon={<Download size={16} />}
         >
           Скачать Excel
         </Button>

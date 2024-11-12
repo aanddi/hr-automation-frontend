@@ -1,15 +1,14 @@
 import { useState } from 'react';
 
+import { useAnalyzeResumes } from '@modules/Home/api';
 import AnalyzeModal from '@modules/Home/components/modal/AnalyzeModal';
-import { useAnalyzeResumes } from '@modules/Home/model';
 
 import { IDataResumes } from '@common/api/services/hh/types';
 import { IСandidates } from '@common/api/services/scoreball/type';
+import { Download, FileSync } from '@common/icons';
 import { generateExel } from '@common/utils';
 
 import { Button, Flex } from 'antd';
-
-import { ArrowDownToLine, FileChartColumnIncreasing } from 'lucide-react';
 
 interface IActions {
   data: IDataResumes;
@@ -36,7 +35,7 @@ const Actions = ({ data, candidates, loading }: IActions) => {
           type="primary"
           onClick={handleAnalyzeResumes}
           loading={isPending}
-          icon={<FileChartColumnIncreasing size={15} />}
+          icon={<FileSync />}
           disabled={data?.items?.length === 0 || !data?.items || loading}
         >
           Проанализировать эту страницу
@@ -46,7 +45,7 @@ const Actions = ({ data, candidates, loading }: IActions) => {
           ghost
           onClick={handleDownloadExcel}
           disabled={data?.items?.length === 0 || !data?.items || loading}
-          icon={<ArrowDownToLine size={16} />}
+          icon={<Download size={16} />}
         >
           Скачать Excel
         </Button>

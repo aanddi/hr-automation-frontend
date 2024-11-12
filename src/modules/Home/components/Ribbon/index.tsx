@@ -2,6 +2,7 @@ import { Title } from '@components';
 
 import { IDataResumes } from '@common/api/services/hh/types';
 import { IСandidates } from '@common/api/services/scoreball/type';
+import { ContainerPage } from '@common/components';
 import { formatCurrency, formatExperience } from '@common/utils';
 import { formatPrice } from '@common/utils/formatted/Number';
 
@@ -31,17 +32,19 @@ const Ribbon = ({ data, loading }: IRibbon) => {
   }));
 
   return (
-    <div className={styles.content}>
-      <div className={styles.titleAndActions}>
-        {loading ? (
-          <Skeleton.Input active />
-        ) : (
-          <Title level={4} title={`Найдено ${formatPrice(data?.found)} резюме `} />
-        )}
-        <Actions data={data} candidates={candidates} loading={loading} />
+    <ContainerPage>
+      <div className={styles.content}>
+        <div className={styles.titleAndActions}>
+          {loading ? (
+            <Skeleton.Input active />
+          ) : (
+            <Title level={5} title={`Найдено ${formatPrice(data?.found)} резюме `} />
+          )}
+          <Actions data={data} candidates={candidates} loading={loading} />
+        </div>
+        <RibbonVariant data={data} candidates={candidates} loading={loading} />
       </div>
-      <RibbonVariant data={data} candidates={candidates} loading={loading} />
-    </div>
+    </ContainerPage>
   );
 };
 

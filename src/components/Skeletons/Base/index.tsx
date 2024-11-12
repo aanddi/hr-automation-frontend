@@ -15,14 +15,13 @@ const Skeleton = ({
   height = '200px',
   active = true,
   paragraph = false,
-  borderRadius = '5px',
   ...restProps
 }: ISkeleton) => {
   return (
     <UISkeleton
       active={active}
       className={`skeleton ${className}`}
-      style={{ width, height, borderRadius }}
+      style={{ width, height }}
       paragraph={paragraph}
       {...restProps}
     />

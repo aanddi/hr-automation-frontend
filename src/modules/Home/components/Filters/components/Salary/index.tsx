@@ -9,6 +9,7 @@ import styles from '../Components.module.scss';
 
 const Salary = () => {
   const { control } = useFormContext();
+
   return (
     <form>
       <Flex gap={20}>

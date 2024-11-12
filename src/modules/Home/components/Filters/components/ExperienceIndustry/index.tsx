@@ -1,11 +1,10 @@
 import { Controller, useFormContext } from 'react-hook-form';
 
-import { useExperience } from '@modules/Home/model';
-
 import { Skeleton } from '@components';
 
 import { Alert, Flex, Select, TreeSelect } from 'antd';
 
+import { useExperience } from '../../api';
 import { expPeriod } from '../../dictionaries';
 import styles from '../Components.module.scss';
 

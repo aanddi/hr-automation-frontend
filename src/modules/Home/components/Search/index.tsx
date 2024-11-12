@@ -1,6 +1,9 @@
-import { Button, Flex, Input } from 'antd';
+import { Title } from '@components';
 
-import { Settings2 } from 'lucide-react';
+import { ContainerPage } from '@common/components';
+import { Search as SearchIcon, Settings } from '@common/icons';
+
+import { Button, Flex, Input } from 'antd';
 
 import styles from './Search.module.scss';
 
@@ -13,22 +16,30 @@ interface ISearch {
 
 const Search = ({ openFilters, setOpenFilters }: ISearch) => {
   return (
-    <>
-      <Flex gap={16} className={styles.content}>
-        <Input placeholder="Поиск" size="large" />
-        <Button
-          type="default"
-          size="large"
-          icon={<Settings2 size={20} />}
-          onClick={() => setOpenFilters(true)}
-          className={styles.buttonFilter}
-        />
-        <Button type="primary" size="large" className={styles.buttonSubmit}>
-          Найти
-        </Button>
-      </Flex>
-      <Filters openFilter={openFilters} setOpenFilter={setOpenFilters} />
-    </>
+    <div className={styles.search}>
+      <ContainerPage>
+        <Title title="Поиск резюме" />
+        <Flex gap={16} className={styles.content}>
+          <Input
+            prefix={<SearchIcon className={styles.searchIcon} />}
+            placeholder="Поиск"
+            size="large"
+            className={styles.formItem}
+          />
+          <Button
+            type="default"
+            size="large"
+            icon={<Settings className={styles.icon} />}
+            onClick={() => setOpenFilters(true)}
+            className={`${styles.buttonFilter} ${styles.formItem}`}
+          />
+          <Button type="primary" size="large" className={styles.buttonSubmit}>
+            Найти
+          </Button>
+        </Flex>
+        <Filters openFilter={openFilters} setOpenFilter={setOpenFilters} />
+      </ContainerPage>
+    </div>
   );
 };
 

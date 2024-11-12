@@ -1,13 +1,12 @@
 import { IListRequestItem } from '@common/api/services/request/types';
+import { Delete } from '@common/icons';
 import { formatDate } from '@common/utils';
 
 import { Button, Descriptions, Popconfirm, Tag, Typography } from 'antd';
 
-import { Trash } from 'lucide-react';
-
 import styles from './CardRequest.module.scss';
 
-import { useDeleteRequest } from '../../model';
+import { useDeleteRequest } from '../../api';
 
 const CardRequest = ({ item, id }: { item: IListRequestItem; id: number }) => {
   const { mutate: deleteRequest } = useDeleteRequest();
@@ -43,13 +42,14 @@ const CardRequest = ({ item, id }: { item: IListRequestItem; id: number }) => {
         </div>
         <div className={styles.actions}>
           <Popconfirm
-            title="Удалить запрос"
+            title={`Удаление запроса №${id}`}
             description="Вы уверены, что хотите удалить этот запрос?"
             okText="Удалить"
             cancelText="Нет"
             onConfirm={handleDeleteRequest}
+            placement="bottom"
           >
-            <Button className={styles.actionsItem} icon={<Trash size={16} />}></Button>
+            <Button className={styles.actionsItem} icon={<Delete />}></Button>
           </Popconfirm>
         </div>
       </div>

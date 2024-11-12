@@ -1,11 +1,10 @@
 import { Controller, useFormContext } from 'react-hook-form';
 
-import { useProfessionalRoles } from '@modules/Home/model';
-
 import { Skeleton } from '@components';
 
 import { Flex, TreeSelect } from 'antd';
 
+import { useProfessionalRoles } from '../../api';
 import styles from '../Components.module.scss';
 
 const ProfessionalRoles = () => {
