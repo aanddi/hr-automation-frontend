@@ -6,12 +6,12 @@
   }
 
   .card {
-    margin-bottom: 16px;
+    margin-bottom: 24px;
     font-size: 15px;
 
     .wrapper {
-      padding: 30px;
-      border: 1px solid #eaeaea;
+      padding: 32px;
+      border: 2px solid #f2f1f1;
       border-radius: 35px;
     }
 
@@ -70,7 +70,7 @@
       .item {
         display: flex;
         gap: 43px;
-        border-bottom: 1px solid #eaeaea;
+        border-bottom: 2px solid #f2f1f1;
         padding-bottom: 16px;
 
         .label {
