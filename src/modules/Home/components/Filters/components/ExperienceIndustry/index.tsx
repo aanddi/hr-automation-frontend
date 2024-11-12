@@ -20,7 +20,7 @@ const Region = () => {
         <Flex vertical gap={8} style={{ width: '100%' }}>
           <Flex>
             {isLoading || isFetching ? (
-              <Skeleton paragraph={false} active height="35px" />
+              <Skeleton height="35px" />
             ) : (
               <Controller
                 name="filter_exp_industry"

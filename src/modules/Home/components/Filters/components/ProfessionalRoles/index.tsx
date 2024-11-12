@@ -8,17 +8,19 @@ import { useProfessionalRoles } from '../../api';
 import styles from '../Components.module.scss';
 
 const ProfessionalRoles = () => {
-  const { control } = useFormContext();
+  const { control, getValues } = useFormContext();
 
-  const { data: professionalRoles, isLoading, isFetching } = useProfessionalRoles();
+  const { data: professionalRoles, isFetching } = useProfessionalRoles();
+
+  console.log(getValues());
 
   return (
     <form>
       <Flex gap={20} align="center">
         <div className={styles.label}>Специализация:</div>
         <Flex style={{ width: '100%' }}>
-          {isLoading || isFetching ? (
-            <Skeleton paragraph={false} active height="35px" />
+          {isFetching ? (
+            <Skeleton height="35px" />
           ) : (
             <Controller
               name="professional_role"
@@ -35,6 +37,7 @@ const ProfessionalRoles = () => {
                   allowClear
                   maxTagCount={5}
                   multiple
+                  defaultValue={getValues('professional_role')}
                   showCheckedStrategy={TreeSelect.SHOW_CHILD}
                   treeCheckable
                   onChange={(selectedValues) => {

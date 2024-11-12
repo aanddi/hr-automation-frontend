@@ -37,7 +37,6 @@ const Filters = ({ openFilter, setOpenFilter }: IFilters) => {
   });
 
   useEffect(() => {
-    const params = Object.fromEntries(new URLSearchParams(location.search));
     const formValues = methods.getValues();
 
     // ключи массивов
@@ -54,6 +53,8 @@ const Filters = ({ openFilter, setOpenFilter }: IFilters) => {
     });
 
     // загрузка простых параметров и label
+    const params = Object.fromEntries(new URLSearchParams(location.search));
+
     for (const key in params) {
       // example: label: only_with_salary => label_only_with_salary: true
       if (key === 'label') {
@@ -71,6 +72,8 @@ const Filters = ({ openFilter, setOpenFilter }: IFilters) => {
 
   const handleSearch = async (data: IFilterParams) => {
     const newUrlQueryParams = new URLSearchParams();
+
+    console.log('Выгружаемые', data);
 
     Object.entries(data).forEach(([key, value]) => {
       const isArrayQuery = Array.isArray(value);

@@ -26,7 +26,9 @@ const ListRequests = () => {
           })}
 
           {isLoadingRequest &&
-            [...Array(8)].map((_, index) => <Skeleton key={index} height="150px" />)}
+            [...Array(8)].map((_, index) => (
+              <Skeleton key={index} height="150px" className={styles.skeleton} />
+            ))}
         </div>
       </div>
     </ContainerPage>

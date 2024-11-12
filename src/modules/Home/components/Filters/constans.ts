@@ -9,7 +9,7 @@ export const defaultValuesForm = {
   order_by: 'relevance',
   gender: 'unknown',
   currency_code: 'RUR',
-  per_page: '5',
+  per_page: '15',
   relocation: 'living_or_relocation',
   filter_exp_period: 'all_time',
   label_only_with_age: false,
