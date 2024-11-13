@@ -46,7 +46,7 @@ const Card = ({ data, loading }: ICard) => {
                       {candidate?.age && <span>Возраст: {candidate?.age}</span>}
                       <div>{candidate?.area?.name}</div>
                       <div className={styles.update}>
-                        <span>Обновленно:</span>
+                        <span>Обновлено:</span>
                         <span>{formatDate(candidate.updated_at, 'DD MMMM')}</span>
                       </div>
                     </Flex>
